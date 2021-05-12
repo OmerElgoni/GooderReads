@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { parseRequest } = require("../services/openLibrary.service");
 
 var router = new Router();
 
@@ -7,14 +8,10 @@ router.get("/", (req, res) => {
   res.send("UNIMPLEMENTED");
 });
 
-//Get books by id
-router.get("/:id", (req, res) => {
-  res.send("UNIMPLEMENTED");
-});
-
 //Search for books
-router.get("/search", (req, res) => {
-  res.send("UNIMPLEMENTED");
+router.get("/search", async (req, res) => {
+  const response = await parseRequest(req);
+  res.json(response);
 });
 
 module.exports = router;
