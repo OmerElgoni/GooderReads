@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       first_name: DataTypes.STRING,
       last_name: DataTypes.STRING,
-      photo: DataTypes.STRING,
+      photo: DataTypes.BLOB,
     },
     { paranoid: true }
   );

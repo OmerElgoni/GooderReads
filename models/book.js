@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true, // Automatically gets converted to SERIAL for postgres
       },
-      cover_art: DataTypes.STRING,
+      cover_art: DataTypes.BLOB,
       isbn: DataTypes.STRING,
       negative_rating: DataTypes.INTEGER,
       positive_rating: DataTypes.INTEGER,
