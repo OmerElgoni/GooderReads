@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       release_date: DataTypes.DATE,
       title: DataTypes.STRING,
     },
-    { paranoid: true }
+    { paranoid: true, timestamps: false }
   );
   Book.associate = function (models) {
     //User book past book link

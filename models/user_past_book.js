@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       rating: DataTypes.BOOLEAN,
       review: DataTypes.STRING,
     },
-    { paranoid: true }
+    { paranoid: true, timestamps: false }
   );
   return UserPastBook;
 };

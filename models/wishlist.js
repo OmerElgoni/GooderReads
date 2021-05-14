@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       date_added: DataTypes.DATE,
       priority: DataTypes.INTEGER,
     },
-    { paranoid: true }
+    { paranoid: true, timestamps: false }
   );
   return Wishlist;
 };

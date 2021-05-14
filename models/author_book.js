@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true, // Automatically gets converted to SERIAL for postgres
       },
     },
-    { paranoid: true }
+    { paranoid: true, timestamps: false }
   );
   return AuthorBook;
 };

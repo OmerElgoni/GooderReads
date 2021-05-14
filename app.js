@@ -31,10 +31,34 @@ app.get("/test/db/authenticate", async (req, res) => {
   }
 });
 
+//This will drop and recreate all tables
+app.get("/test/db/forceSync", async (req, res) => {
+  try {
+    await sequelize.sync({ force: true });
+    res.send("All models were synchronized successfully.");
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+//This will alter tables so that they match the models
+app.get("/test/db/alterSync", async (req, res) => {
+  try {
+    await sequelize.sync({ force: true });
+    res.send("All models were alter synchronized successfully.");
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 //start app
 const port = process.env.PORT || 4000;
 
-//Create any tables that don't exist and start server
-db.sequelize.sync().then(() => {
+if (db.env === "development") {
+  //Create any tables that don't exist and start server
+  db.sequelize.sync().then(() => {
+    app.listen(port, () => console.log(`App is listening on port ${port}.`));
+  });
+} else {
   app.listen(port, () => console.log(`App is listening on port ${port}.`));
-});
+}
