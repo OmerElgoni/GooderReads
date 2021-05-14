@@ -35,7 +35,7 @@ app.get("/test/db/authenticate", async (req, res) => {
 app.get("/test/db/forceSync", async (req, res) => {
   try {
     await sequelize.sync({ force: true });
-    res.send("All models were synchronized successfully.");
+    res.send("All models were force synchronized successfully.");
   } catch (error) {
     res.json(error);
   }
@@ -44,7 +44,7 @@ app.get("/test/db/forceSync", async (req, res) => {
 //This will alter tables so that they match the models
 app.get("/test/db/alterSync", async (req, res) => {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ alter: true });
     res.send("All models were alter synchronized successfully.");
   } catch (error) {
     res.json(error);
