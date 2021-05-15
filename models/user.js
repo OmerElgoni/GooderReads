@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       first_name: DataTypes.STRING,
       last_name: DataTypes.STRING,
     },
-    { paranoid: true, timestamps: false }
+    { paranoid: true, createdAt: false, updatedAt: false }
   );
   User.associate = function (models) {
     //User past book link

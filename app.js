@@ -31,6 +31,8 @@ app.get("/test/db/authenticate", async (req, res) => {
   }
 });
 
+//TODO: THESE ARE USED FOR DEVELOPMENT PURPOSES AND SHOULD BE REMOVED ONCE THE DATABASE STRUCTURE IS FINALISED. NAVIGATING TO THESE WILL ALTER THE DATABASE TO MATCH THE ENTITY MODELS (Potentially deleting the data in the tables).
+
 //This will drop and recreate all tables
 app.get("/test/db/forceSync", async (req, res) => {
   try {

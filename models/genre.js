@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       genre: DataTypes.STRING,
     },
-    { paranoid: true, timestamps: false }
+    { paranoid: true, createdAt: false, updatedAt: false }
   );
   Genre.associate = function (models) {
     //Genre book link

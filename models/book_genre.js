@@ -1,6 +1,6 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const BookGenre = sequelize.define(
+  return sequelize.define(
     "book_genre",
     {
       book_genre_id: {
@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true, // Automatically gets converted to SERIAL for postgres
       },
     },
-    { paranoid: true, timestamps: false }
+    { paranoid: true, createdAt: false, updatedAt: false }
   );
-  return BookGenre;
 };

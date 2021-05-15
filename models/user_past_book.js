@@ -1,6 +1,6 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const UserPastBook = sequelize.define(
+  return sequelize.define(
     "user_past_book",
     {
       user_past_book_id: {
@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       rating: DataTypes.BOOLEAN,
       review: DataTypes.STRING,
     },
-    { paranoid: true, timestamps: false }
+    { paranoid: true, createdAt: false, updatedAt: false }
   );
-  return UserPastBook;
 };

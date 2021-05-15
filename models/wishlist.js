@@ -1,6 +1,6 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Wishlist = sequelize.define(
+  return sequelize.define(
     "wishlist",
     {
       wishlist_id: {
@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       date_added: DataTypes.DATE,
       priority: DataTypes.INTEGER,
     },
-    { paranoid: true, timestamps: false }
+    { paranoid: true, createdAt: false, updatedAt: false }
   );
-  return Wishlist;
 };
