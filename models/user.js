@@ -25,12 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsToMany(models["book"], {
       through: models["wishlist"],
       foreignKey: "user_id",
-    });
-
-    //User past book
-    User.belongsToMany(models["book"], {
-      through: models["user_past_book"],
-      foreignKey: "user_id",
+      as: "wishlist_owner",
     });
   };
   //
