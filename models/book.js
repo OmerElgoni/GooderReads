@@ -23,12 +23,14 @@ module.exports = (sequelize, DataTypes) => {
     Book.belongsToMany(models["user"], {
       through: models["user_past_book"],
       foreignKey: "book_id",
+      as: "past_book_owner",
     });
 
     //User wishlist link
     Book.belongsToMany(models["user"], {
       through: models["wishlist"],
       foreignKey: "book_id",
+      as: "wishlist_owner",
     });
 
     //Author book link
@@ -40,12 +42,6 @@ module.exports = (sequelize, DataTypes) => {
     //Genre book link
     Book.belongsToMany(models["genre"], {
       through: models["book_genre"],
-      foreignKey: "book_id",
-    });
-
-    //User past book
-    Book.belongsToMany(models["user"], {
-      through: models["user_past_book"],
       foreignKey: "book_id",
     });
   };
