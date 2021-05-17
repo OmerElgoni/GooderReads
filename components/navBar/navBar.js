@@ -11,14 +11,18 @@ class NavBar extends HTMLElement {
   render() {
     this.shadow.innerHTML = `
     <nav class="nav-bar">
-
-        <link rel="stylesheet" href="./navBar.css" />
-        <a href="/">Home</a>
+        <link rel="stylesheet" href="/components/navBar/navBar.css" />
+        <span>
+        <a id="home_link" href="/"></a>
+        </span>
+        <span class="nav-content">
         <a href="/browse.html">Browse</a>
+        <a href="/readList.html">Read</a>
+        <a href="/wishlist.html">Wishlist</a>
         <form
-        class="search-bar-form"
+        id="search-bar-form"
         autocomplete="off"
-        action="/search"
+        action="/pages/search/search.html"
         aria-label="Search for books"
         >
         <input
@@ -30,6 +34,7 @@ class NavBar extends HTMLElement {
             aria-label="Search for books"
         />
         </form>
+        </span>
         <a href="/profile.html">Profile</a>
 
     </nav>
