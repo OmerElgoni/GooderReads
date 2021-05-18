@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const app = express();
 const db = require("./models/index.js");
+
+//Parses stuff for post requests
+app.use(express.urlencoded({ extended: true }));
 //Should look at this for an ORM/ODM https://sequelize.org/master/manual/getting-started.html
 //Can make raw sql queries using https://sequelize.org/master/manual/raw-queries.html
 //as well as use model functions
@@ -16,10 +19,11 @@ app.use(helmet());
 app.use(cors());
 
 //Routes
-const bookRoutes = require("./routes/bookRoutes.js");
-const userRoutes = require("./routes/userRoutes.js");
-app.use("/api/books", bookRoutes(db));
-app.use("/api/users", userRoutes(db));
+
+app.use("/api/books", require("./routes/bookRoutes.js")(db));
+app.use("/api/users", require("./routes/userRoutes.js")(db));
+app.use("/api/authors", require("./routes/authorRoutes.js")(db));
+app.use("/api/genres", require("./routes/genreRoutes.js")(db));
 
 app.get("/test/db/authenticate", async (req, res) => {
   try {

@@ -8,15 +8,23 @@ module.exports = function (db) {
     res.json(await db.user.findAll());
   });
 
-  router.get("/test/create", async (req, res) => {
-    const user = db.user.build({
-      first_name: "Matthew",
-      last_name: "Pilkington",
-      email_address: "matthewpil@bbd.co.za",
-    });
+  router.get("/:id", async (req, res) => {
+    res.json(await db.user.findByPk(req.params.id));
+  });
 
-    await user.save();
-    res.send("User was saved to the database!");
+  router.get("/:id/wishlist", async (req, res) => {
+    res.json(
+      await db.user.findAll({
+        where: {
+          user_id: req.params.id,
+        },
+        include: {
+          model: db.book,
+          as: "wishlist_books",
+          required: true,
+        },
+      })
+    );
   });
 
   return router;
