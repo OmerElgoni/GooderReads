@@ -28,7 +28,7 @@ class NavBar extends HTMLElement {
         <input
             class="search-bar-input"
             autocomplete="off"
-            name="query"
+            name="q"
             type="text"
             placeholder="Search for books"
             aria-label="Search for books"
