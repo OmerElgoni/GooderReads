@@ -97,6 +97,9 @@ const parseRequest = async (req, db) => {
   if (queryParams.cover) {
     return openLibraryService.getCoverURLByID(queryParams.cover);
   }
+  if (queryParams.genre){
+    return openLibraryService.getBookByCategory(queryParams.genre)
+  }
 };
 
 module.exports = {
