@@ -13,9 +13,6 @@
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
-}
-.autocomplete input[type="text"] {
-  background-color: #f1f1f1;
   width: 100%;
 }
 
@@ -29,6 +26,8 @@
   top: 100%;
   left: 0;
   right: 0;
+  max-height: 200px;
+  overflow-y: auto;
 }
 .autocomplete-items div {
   padding: 10px;

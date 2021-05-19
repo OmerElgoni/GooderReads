@@ -1,8 +1,9 @@
 import { autocomplete } from "./autocomplete.js";
 
-var searchResults = [];
+var searchResults;
+var filteredResults;
 
-function card(title, author, image, publisher, publish_date) {
+function card(book_id, title, author, image, publisher, publish_date) {
   const element = document.createElement("div");
   element.className = "card";
   element.innerHTML = `<img src="${image}" alt="Book cover image." width=100 height=100 />
@@ -16,6 +17,9 @@ function card(title, author, image, publisher, publish_date) {
     </p>
   </div>
 `;
+  element.addEventListener("click", () => {
+    window.location.href = `/book/${book_id}`;
+  });
   return element;
 }
 function getUniqueGenres(books) {
@@ -56,6 +60,54 @@ function applyFilters() {
   const genreFilterValue = document.querySelector("#genreInput").value;
   const authorFilterValue = document.querySelector("#authorInput").value;
   const publisherFilterValue = document.querySelector("#publisherInput").value;
+
+  filteredResults = searchResults.filter((element) => {
+    if (genreFilterValue !== "") {
+      if (
+        !element.genres.map((genre) => genre.genre).includes(genreFilterValue)
+      ) {
+        return false;
+      }
+    }
+
+    if (authorFilterValue !== "") {
+      if (
+        !element.authors
+          .map((author) => [author.first_name, author.last_name].join(" "))
+          .includes(authorFilterValue)
+      ) {
+        return false;
+      }
+    }
+    console.log(element);
+    if (publisherFilterValue !== "") {
+      if (element.publisher !== publisherFilterValue) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+  populateSearchResults(
+    document.getElementById("search-result-content"),
+    filteredResults
+  );
+}
+
+function populateSearchResults(parent, results) {
+  parent.innerHTML = ``;
+  results.forEach((element) => {
+    parent.appendChild(
+      card(
+        element.book_id,
+        element.title,
+        [element.authors[0].first_name, element.authors[0].last_name].join(" "),
+        element.cover_art,
+        element.publisher,
+        element.release_date
+      )
+    );
+  });
 }
 // function getUniqueAuthors
 async function querySearchAPI() {
@@ -76,22 +128,7 @@ async function querySearchAPI() {
     ).json();
 
     searchResults = queryResult;
-    parent.innerHTML = ``;
-    console.log(searchResults);
-
-    searchResults.forEach((element) => {
-      parent.appendChild(
-        card(
-          element.title,
-          [element.authors[0].first_name, element.authors[0].last_name].join(
-            " "
-          ),
-          element.cover_art,
-          element.publisher,
-          element.release_date
-        )
-      );
-    });
+    populateSearchResults(parent, searchResults);
 
     //Add autocomplete functionality to each of these input fields
     autocomplete(

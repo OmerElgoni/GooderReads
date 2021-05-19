@@ -1,15 +1,20 @@
+//Based on code from https://www.w3schools.com/howto/howto_js_autocomplete.asp
+
 export function autocomplete(inputElement, autocompleteOptions) {
   /*the autocomplete function takes two arguments,
       the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   inputElement.addEventListener("blur", function (e) {
-    if (!autocompleteOptions.includes(inputElement.value)) {
-      inputElement.value = "";
-    }
+    setTimeout(() => {
+      closeAllLists();
+      if (!autocompleteOptions.includes(inputElement.value)) {
+        inputElement.value = "";
+      }
+    }, 100);
   });
 
   inputElement.addEventListener("input", showPopUp);
-  inputElement.addEventListener("click", showPopUp);
+  inputElement.addEventListener("focus", showPopUp);
   /*execute a function presses a key on the keyboard:*/
   inputElement.addEventListener("keydown", function (e) {
     const optionsContainer = document.getElementById(
@@ -61,8 +66,6 @@ export function autocomplete(inputElement, autocompleteOptions) {
     }
   }
   function closeAllLists(element) {
-    /*close all autocomplete lists in the document,
-        except the one passed as an argument:*/
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
       if (element != x[i] && element != inputElement) {
@@ -73,40 +76,37 @@ export function autocomplete(inputElement, autocompleteOptions) {
 
   function showPopUp() {
     const val = this.value;
-    /*close any already open lists of autocompleted values*/
+
     closeAllLists();
-    if (!val) {
-      return false;
-    }
     currentFocus = -1;
-    /*create a DIV element that will contain the items (values):*/
-    const optionsContainer = document.createElement("DIV");
+
+    const optionsContainer = document.createElement("div");
     optionsContainer.setAttribute("id", this.id + "autocomplete-list");
     optionsContainer.setAttribute("class", "autocomplete-items");
-    /*append the DIV element as a child of the autocomplete container:*/
+
     this.parentNode.appendChild(optionsContainer);
-    /*for each item in the array...*/
+
     autocompleteOptions.forEach((option) => {
-      if (option.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+      if (
+        val === "" ||
+        !val ||
+        option.toUpperCase().includes(val.toUpperCase())
+      ) {
+        console.log("contains");
         const matchingOption = document.createElement("DIV");
 
-        matchingOption.innerHTML =
-          "<strong>" + option.substr(0, val.length) + "</strong>";
-        matchingOption.innerHTML += option.substr(val.length);
+        matchingOption.innerHTML = option;
 
         matchingOption.innerHTML +=
           "<input type='hidden' value='" + option + "'>";
 
         matchingOption.addEventListener("click", function () {
-          inputElement.value = this.getElementsByTagName("input")[0].value;
+          inputElement.value =
+            matchingOption.getElementsByTagName("input")[0].value;
           closeAllLists();
         });
         optionsContainer.appendChild(matchingOption);
       }
     });
   }
-  /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
-    closeAllLists(e.target);
-  });
 }
