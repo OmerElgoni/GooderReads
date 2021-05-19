@@ -53,7 +53,7 @@ const toModel = async (element, db) => {
   }
 };
 
-const convertRequestDocsToModels = async (docs) => {
+const convertRequestDocsToModels = async (docs, db) => {
   let results = [];
   for (let index = 0; index < docs.length; index++) {
     const object = await toModel(docs[index], db);
@@ -75,7 +75,7 @@ const parseRequest = async (req, db) => {
   if (queryParams.query) {
     const response = await openLibraryService.search(queryParams.query);
     if (response.docs) {
-      return convertRequestDocsToModels(response.docs);
+      return convertRequestDocsToModels(response.docs, db);
     }
     return response;
   }
