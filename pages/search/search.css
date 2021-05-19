@@ -8,6 +8,7 @@
 .page-content {
   display: flex;
   flex-flow: row wrap;
+  max-height: 70vh;
 }
 
 .search-container {
@@ -19,15 +20,69 @@
 }
 
 .filter-container {
+  padding-top: 60px;
   min-width: 300px;
   margin-right: 20px;
   flex: 1;
+  text-align: center;
+}
+
+.filter-container button {
+  height: 30px;
+  width: 200px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 body {
   padding: 100px 50px 0px 50px;
   max-width: 1200px;
   margin: auto;
-  max-height: 80vh;
+
   display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid black;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.card-details {
+  padding-left: 20px;
+  min-width: 200px;
+}
+
+@media screen and (max-width: 920px) {
+  .search-container {
+    min-width: 200px;
+  }
+  .filter-container {
+    min-width: 200px;
+    margin-right: 0;
+  }
+  .card {
+    justify-content: center;
+    flex-direction: column;
+  }
+  #search-result-content {
+    overflow-y: auto;
+  }
+  .page-content {
+    display: flex;
+    flex-flow: column wrap;
+    max-height: unset;
+  }
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
