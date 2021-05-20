@@ -29,6 +29,22 @@ module.exports = function (db) {
     );
   });
 
+  router.get("/:id/wishlist/:bookId", async (req, res) => {
+    try {
+      const user = db.user.findByPk(req.params.id);
+      const book = db.book.findByPk(req.params.bookId);
+      await user.addBook(book);
+      await user.save();
+      res.json("Success");
+      console.log("succesfully added book to wishlist")
+    } catch (error) {
+      res.json("Error");
+      console.log("ERROR", error)
+    }
+    
+    
+  });
+
   router.get("/:id/readlist", async (req, res) => {
     res.json(
       await db.user.findAll({
