@@ -59,7 +59,7 @@ app.get("/test/db/alterSync", async (req, res) => {
 });
 
 //start app
-const port = process.env.PORT || 4100;
+const port = process.env.PORT || 4000;
 
 if (db.env === "development") {
   //Create any tables that don't exist and start server
