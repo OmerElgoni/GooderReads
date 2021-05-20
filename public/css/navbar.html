@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="./navBar.css" />
+<nav class="nav-bar">
+  <button id="hamburger"></button>
+  <a id="home_link" href="/"></a>
+
+  <span class="nav-content">
+    <div id="hamburger-links" class="hamburger-active">
+      <a href="/browse">Browse</a>
+      <a href="/readList">Read</a>
+      <a href="/wishlist">Wishlist</a>
+    </div>
+    <form
+      id="search-bar-form"
+      autocomplete="off"
+      action="/search"
+      aria-label="Search for books"
+    >
+      <input
+        class="search-bar-input"
+        autocomplete="off"
+        name="q"
+        type="text"
+        placeholder="Search for books"
+        aria-label="Search for books"
+      />
+    </form>
+  </span>
+  <a href="/profile">Profile</a>
+</nav>
