@@ -27,5 +27,20 @@ module.exports = function (db) {
     );
   });
 
+  router.get("/:id/readlist", async (req, res) => {
+    res.json(
+      await db.user.findAll({
+        where: {
+          user_id: req.params.id,
+        },
+        include: {
+          model: db.book,
+          as: "past_books",
+          required: true,
+        },
+      })
+    );
+  });
+
   return router;
 };
