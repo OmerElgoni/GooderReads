@@ -1,7 +1,5 @@
 const { Router } = require("express");
-const express = require('express');
 var router = new Router();
-router.use(express.json());
 
 module.exports = function (db) {
   const users = require("../controllers/user.controller.js");
