@@ -1,4 +1,5 @@
 "use strict";
+
 module.exports = (sequelize, DataTypes) => {
   const Book = sequelize.define(
     "book",
@@ -8,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true, // Automatically gets converted to SERIAL for postgres
       },
-      cover_art: DataTypes.BLOB,
+      cover_art: DataTypes.STRING,
       isbn: DataTypes.STRING,
-      negative_rating: DataTypes.INTEGER,
-      positive_rating: DataTypes.INTEGER,
+      negative_rating: { type: DataTypes.INTEGER, defaultValue: 0 },
+      positive_rating: { type: DataTypes.INTEGER, defaultValue: 0 },
       publisher: DataTypes.STRING,
       release_date: DataTypes.DATE,
       title: DataTypes.STRING,

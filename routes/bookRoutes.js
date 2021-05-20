@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { parseRequest } = require("../services/openLibrary.service");
+const { parseRequest } = require("../controllers/openLibrary.controller");
 
 var router = new Router();
 
@@ -11,7 +11,7 @@ module.exports = function (db) {
 
   //Search for books
   router.get("/search", async (req, res) => {
-    const response = await parseRequest(req);
+    const response = await parseRequest(req, db);
     res.json(response);
   });
 
