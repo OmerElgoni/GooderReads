@@ -28,10 +28,16 @@ module.exports = function (db) {
   });
 
   router.post("/:id/wishlist/:bookId", async (req, res) => {
-    const user = db.user.findByPk(req.params.id);
-    const book = db.book.findByPk(req.params.bookId);
-    user.addBook(book)
-    res.json("Success");
+    try {
+      const user = db.user.findByPk(req.params.id);
+      const book = db.book.findByPk(req.params.bookId);
+      user.addBook(book);
+      res.json("Success");
+    } catch (error) {
+      res.json(error);
+    }
+    
+    
   });
 
   router.get("/:id/readlist", async (req, res) => {
