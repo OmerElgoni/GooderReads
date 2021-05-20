@@ -27,7 +27,7 @@ module.exports = function (db) {
     );
   });
 
-  router.post("/:id/wishlist/:bookId", async (req, res) => {
+  router.get("/:id/wishlist/:bookId", async (req, res) => {
     try {
       const user = db.user.findByPk(req.params.id);
       const book = db.book.findByPk(req.params.bookId);
