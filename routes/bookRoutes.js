@@ -9,6 +9,11 @@ module.exports = function (db) {
     res.json(await db.book.findAll());
   });
 
+  //Get specific book
+  router.get("/:id", async (req, res) => {
+    res.json(await db.book.findByPk(req.params.id));
+  });
+
   //Search for books
   router.get("/search", async (req, res) => {
     const response = await parseRequest(req, db);
