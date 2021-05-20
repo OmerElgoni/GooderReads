@@ -10,7 +10,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
       if (!autocompleteOptions.includes(inputElement.value)) {
         inputElement.value = "";
       }
-    }, 100);
+    }, 200);
   });
 
   inputElement.addEventListener("input", showPopUp);
@@ -92,12 +92,11 @@ export function autocomplete(inputElement, autocompleteOptions) {
         !val ||
         option.toUpperCase().includes(val.toUpperCase())
       ) {
-        const matchingOption = document.createElement("DIV");
+        const matchingOption = document.createElement("div");
 
         matchingOption.innerHTML = option;
 
-        matchingOption.innerHTML +=
-          "<input type='hidden' value='" + option + "'>";
+        matchingOption.innerHTML += `<input type='hidden' value="${option}">`;
 
         matchingOption.addEventListener("click", function () {
           inputElement.value =

@@ -1,12 +1,10 @@
-* {
-  box-sizing: border-box;
-}
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
   display: block;
   width: 100%;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 .autocomplete input {
   border: 1px solid transparent;
@@ -14,6 +12,7 @@
   padding: 10px;
   font-size: 16px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .autocomplete-items {
@@ -28,12 +27,14 @@
   right: 0;
   max-height: 200px;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
+  box-sizing: border-box;
 }
 
 .autocomplete-items div:hover {
