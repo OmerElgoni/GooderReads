@@ -41,6 +41,13 @@ const getBookByCategory = (genre) => {
 
 const getBookByISBN = (isbn) => {
   const url = new URL(`https://openlibrary.org/isbn/${isbn}.json`);
+  
+  return getResponse(url);
+};
+
+const getBookByISBNDetailed = (isbn) => {
+  const url = new URL(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=details&format=json`);
+  
   return getResponse(url);
 };
 
@@ -54,6 +61,7 @@ module.exports = {
   searchByAuthor,
   getBookByKey,
   getBookByISBN,
+  getBookByISBNDetailed,
   getCoverURLByID,
   getBookByCategory
 

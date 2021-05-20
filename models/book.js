@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       publisher: DataTypes.STRING,
       release_date: DataTypes.DATE,
       title: DataTypes.STRING,
+      description: { type: DataTypes.STRING, defaultValue: "No description is available for this book"},
+      pages: { type: DataTypes.INTEGER, defaultValue: 0 }
     },
     { paranoid: true, createdAt: false, updatedAt: false }
   );

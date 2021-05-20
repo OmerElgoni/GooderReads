@@ -1,5 +1,4 @@
 const { Router } = require("express");
-
 var router = new Router();
 
 module.exports = function (db) {
@@ -29,6 +28,40 @@ module.exports = function (db) {
     );
   });
 
+  router.get("/:id/wishlist/:bookId", async (req, res) => {
+    try {
+      const user = await db.user.findByPk(req.params.id);
+      const book = await db.book.findByPk(req.params.bookId);
+
+      console.log( Object.getOwnPropertyNames(await user));
+      await user.addWishlist_book(book);
+      await user.save();
+      res.json("Success");
+      console.log("succesfully added book to wishlist")
+    } catch (error) {
+      res.json("Error");
+      console.log("ERROR", error)
+    }
+    
+  });
+
+  router.get("/:id/readlist/:bookId", async (req, res) => {
+    try {
+      const user = await db.user.findByPk(req.params.id);
+      const book = await db.book.findByPk(req.params.bookId);
+
+      console.log( Object.getOwnPropertyNames(await user));
+      await user.addPast_book(book);
+      await user.save();
+      res.json("Success");
+      console.log("succesfully added book to readlist")
+    } catch (error) {
+      res.json("Error");
+      console.log("ERROR", error)
+    }
+    
+  });
+
   router.get("/:id/readlist", async (req, res) => {
     res.json(
       await db.user.findAll({
@@ -44,7 +77,7 @@ module.exports = function (db) {
     );
   });
 
-  router.post("/create", users.create);
+  router.post("/", users.create);
   router.put("/:id", users.update);
 
   return router;
