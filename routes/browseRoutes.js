@@ -14,6 +14,7 @@ module.exports = function (db) {
         include: {
           model: db.book,
           required: true,
+          as: books,
         },
       })
     )
