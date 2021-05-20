@@ -31,10 +31,11 @@ module.exports = function (db) {
 
   router.get("/:id/wishlist/:bookId", async (req, res) => {
     try {
-      const user = db.user.findByPk(req.params.id);
-      const book = db.book.findByPk(req.params.bookId);
+      const user = await db.user.findByPk(req.params.id);
+      const book = await db.book.findByPk(req.params.bookId);
+
       console.log( Object.getOwnPropertyNames(await user));
-      await user.addDog(book);
+      await user.addWishlist_book(book);
       await user.save();
       res.json("Success");
       console.log("succesfully added book to wishlist")
@@ -43,6 +44,22 @@ module.exports = function (db) {
       console.log("ERROR", error)
     }
     
+  });
+
+  router.get("/:id/readlist/:bookId", async (req, res) => {
+    try {
+      const user = await db.user.findByPk(req.params.id);
+      const book = await db.book.findByPk(req.params.bookId);
+
+      console.log( Object.getOwnPropertyNames(await user));
+      await user.addPast_book(book);
+      await user.save();
+      res.json("Success");
+      console.log("succesfully added book to readlist")
+    } catch (error) {
+      res.json("Error");
+      console.log("ERROR", error)
+    }
     
   });
 

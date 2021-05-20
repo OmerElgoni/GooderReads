@@ -64,6 +64,11 @@ if (db.env === "development") {
   //Create any tables that don't exist and start server
   db.sequelize.sync().then(() => {
     app.listen(port, () => console.log(`App is listening on port ${port}.`));
+    db.user.create({
+      email_address: 'example@example.com',
+      first_name: 'John',
+      last_name: 'Doe',
+    })
   });
 } else {
   app.listen(port, () => console.log(`App is listening on port ${port}.`));
