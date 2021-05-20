@@ -40,10 +40,9 @@ const toModel = async (element, db) => {
         })
       )[0];
       genres.push(genre);
-
-      await book.setGenres(genre);
     }
 
+    await book.setGenres(genres);
     await book.setAuthors(author);
     book.authors = [author];
     book.genres = genres;
@@ -80,10 +79,18 @@ const parseRequest = async (req, db) => {
     return response;
   }
   if (queryParams.title) {
-    return openLibraryService.searchByTitle(queryParams.title);
+    const response = await openLibraryService.searchByTitle(queryParams.title);
+    if (response.docs) {
+      return convertRequestDocsToModels(response.docs, db);
+    }
+    return response;
   }
   if (queryParams.author) {
-    return openLibraryService.searchByAuthor(queryParams.author);
+    const response = openLibraryService.searchByAuthor(queryParams.author);
+    if (response.docs) {
+      return convertRequestDocsToModels(response.docs, db);
+    }
+    return response;
   }
 
   //We may want to use route parameters for these instead, rather than search params.
