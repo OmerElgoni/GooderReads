@@ -2,6 +2,8 @@ const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
 
+//tutorial: https://bezkoder.com/node-js-express-sequelize-mysql/
+
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.title) {
