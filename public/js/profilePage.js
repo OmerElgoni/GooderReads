@@ -29,42 +29,41 @@ async function queryUserAPI()
 
 async function getPastBooksData()
 {
-    const queryResult1 = await (await fetch(`${APIEndpoint}users/${userId}/readlist`).then(response => response.json()));
-    console.log(queryResult1[0].past_books);
+    const queryResult = await (await fetch(`${APIEndpoint}users/${userId}/readlist`).then(response => response.json()));
+    console.log(queryResult[0].past_books);
 
     var reviewSection = document.getElementById("reviews");
   
     var reviews = "";
     
-    queryResult1[0].past_books.sort(function(a,b){
+    queryResult[0].past_books.sort(function(a,b){
         return new Date(b.user_past_book.date_completed) 
                 - new Date(a.user_past_book.date_completed);
       });
 
     var books = Array(12).fill(0);
     var pages = Array(12).fill(0);
-    
 
-    queryResult1[0].past_books.forEach((pastBook, i) =>
-                    { 
-                        var date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
-                        console.log({pastBook});
-                        if ( i < 3) {
-                            reviews += "<article>" + 
-                                    '<section class="book-title">' + 
-                                    pastBook.title +
-                                    "</section>" + 
-                                    '\"' +
-                                    pastBook.user_past_book.review + 
-                                    '\"' +
-                                    "</article>" 
-                        }  
+    queryResult[0].past_books.forEach((pastBook, i) =>
+    { 
+        var date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
+        console.log({pastBook});
+        if ( i < 3) {
+            reviews += "<article>" + 
+                    '<section class="book-title">' + 
+                    pastBook.title +
+                    "</section>" + 
+                    '\"' +
+                    pastBook.user_past_book.review + 
+                    '\"' +
+                    "</article>" 
+        }  
 
-                        if (date > new Date().setMonth(new Date().getMonth()-12)){
-                            books[date.getMonth()] += 1;
-                            pages[date.getMonth()] += pastBook.pages || 0;
-                        }
-                    });
+        if (date > new Date().setMonth(new Date().getMonth()-12)){
+            books[date.getMonth()] += 1;
+            pages[date.getMonth()] += pastBook.pages || 0;            
+        }
+    });
         
     reviewSection.innerHTML = reviews;
     setUpCharts(books, pages);
@@ -82,9 +81,6 @@ function showChart(chartName){
 function setUpCharts(books, pages){
     var booksChart = document.getElementById('booksPerMonthChart').getContext('2d');
     var pagesChart = document.getElementById('pagesPerMonthChart').getContext('2d');
-
-    // var bookMonthlyData = [3, 5, 6, 2, 3, 4, 2, 3, 2, 0, 1, 3];
-    var pageMonthlyData = [600, 1200, 1500, 600, 200, 400, 200, 400, 200, 0, 100, 300];
 
     const monthLabels =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
     var bookChart = new Chart(booksChart, {
@@ -134,7 +130,7 @@ function setUpCharts(books, pages){
             labels: monthLabels,
             datasets: [{
                 label: '# of pages',
-                data: pageMonthlyData,
+                data: pages,
                 backgroundColor: [
                     'rgba(12, 52, 90, 0.7)',
                     'rgba(244, 211, 94, 0.7)',
