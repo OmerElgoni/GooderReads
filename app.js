@@ -48,7 +48,6 @@ app.get('/wishlist', checkUserLoggedIn,(req,res) =>{
     res.sendFile(path.join(__dirname + '/private_pages/wishlist.html'))
 })
 
-
 app.get('/logout', (req, res) => {
   req.session = null
   req.logout()
