@@ -1,8 +1,19 @@
+html * {
+  font-family: var(--font-family);
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
 .book-details-body {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 100px 50px 0px 50px;
+}
+
+.icon {
+  width: auto;
+  height: 2rem
 }
 
 .book-details {
@@ -13,6 +24,7 @@
 .book-heading-and-description {
   display: flex;
   flex-direction: column;
+  padding-left: 50px;
 }
 
 .review-text-input {
@@ -20,7 +32,7 @@
 }
 
 .book-cover {
-    width: auto;
+  width: auto;
   height: 100%;
   display: flex;
 }
@@ -28,4 +40,9 @@
 .cover-img {
     width: auto;
     height: 100%;
+}
+
+footer {
+  justify-self: end;
+  bottom: 0;
 }

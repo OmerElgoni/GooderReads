@@ -12,9 +12,9 @@ function setCoverImage(coverImageUrl, title) {
 
 function setRatings(positiveRatings, negativeRatings) {
   document.getElementById("positiveReviews").textContent =
-    positiveRatings + " positive reviews";
+    positiveRatings;
   document.getElementById("negativeReviews").textContent =
-    negativeRatings + " negative reviews";
+    negativeRatings;
 }
 function setAuthors(authors) {
   const element = document.getElementById("bookAuthor");
@@ -24,6 +24,11 @@ function setAuthors(authors) {
     authorText = authorText + " and " + nextAuthor;
   }
   element.textContent = authorText;
+}
+
+function setDescription(description) {
+  const element = document.getElementById("bookDescription");
+  element.textContent = description;
 }
 
 async function setDetails() {
@@ -41,7 +46,8 @@ async function setDetails() {
   authorQueryResult = await (await authorQueryResult).json();
   console.log("authorQueryResult", authorQueryResult);
   setTitle(bookQueryResult.title);
-  setCoverImage(bookQueryResult.cover_image, bookQueryResult.title);
+  setDescription(bookQueryResult.description);
+  setCoverImage(bookQueryResult.cover_art, bookQueryResult.title);
   setAuthors(authorQueryResult);
   setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
 }
