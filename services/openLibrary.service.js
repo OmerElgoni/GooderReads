@@ -45,7 +45,7 @@ const getBookByISBN = (isbn) => {
 };
 
 const getCoverURLByID = (cover_id) => {
-  return `https://covers.openlibrary.org/b/id/${cover_id}-S.jpg`;
+  return `https://covers.openlibrary.org/b/id/${cover_id}-M.jpg`;
 };
 
 module.exports = {
