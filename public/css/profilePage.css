@@ -1,9 +1,4 @@
-/* ---- Common CSS ---- */
-html *
-{
-  font-family: sans-serif;
-  color: var(--text-dark);
-}
+/* ---- General CSS ---- */
 
 main {
   width: 90%;
@@ -16,6 +11,7 @@ h1 {
 
 h3{
   margin-top: 2rem;
+  font-size: 1.5rem;
 }
 
 label {
@@ -60,16 +56,12 @@ i{
 
 /* ---- Book Lists CSS ---- */
 .book-list button {
-  width: 30%;
-}
-
-#bookLists{
-  display: flex;
-  margin: auto;
+  width: 150px;
+  font-size: 1.1rem;
 }
 
 .book-list{
-  width: 50%;
+  width: 100%;
 }
 
 /* ---- Reviews CSS ---- */
@@ -86,7 +78,8 @@ i{
   height: 100px;
   width: 33%;
   border-radius: 4px;
-  box-shadow: 1px 1px 3px 0px rgba(115,115,115,0.5)
+  box-shadow: 1px 1px 3px 0px rgba(115,115,115,0.5);
+  overflow: auto;
 }
 
 /* ---- Statistics CSS ---- */
@@ -97,6 +90,7 @@ i{
   border: 0px;
   float: left;
   width: 100%;
+  font-size: 1.1rem;
 }
 
 .left-most{
