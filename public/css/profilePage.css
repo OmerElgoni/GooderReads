@@ -11,6 +11,7 @@ h1 {
 
 h3{
   margin-top: 2rem;
+  font-size: 1.5rem;
 }
 
 label {
@@ -55,7 +56,8 @@ i{
 
 /* ---- Book Lists CSS ---- */
 .book-list button {
-  width: 100px;
+  width: 45%;
+  font-size: 1.1rem;
 }
 
 #bookLists{
@@ -64,7 +66,7 @@ i{
 }
 
 .book-list{
-  width: 50%;
+  width: 100%;
 }
 
 /* ---- Reviews CSS ---- */
@@ -93,6 +95,7 @@ i{
   border: 0px;
   float: left;
   width: 100%;
+  font-size: 1.1rem;
 }
 
 .left-most{
