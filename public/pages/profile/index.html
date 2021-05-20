@@ -4,10 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Profile</title>
     <script src="../../js/navBar.js"></script>
+    <link href="../../css/profilePage.css" type="text/css" rel="stylesheet">
+
   </head>
   <body>
     <nav-bar></nav-bar>
+    <main>
+      <h1>Profile Page</h1>
+      <section>
+        <article id="details-form">
+          <h3>Details</h3>
+          <label>Name:</label>
+          <p id="user-profile-name">
+          </p>
+          <label>Email:</label>
+          <p id="user-profile-email">
+          </p>
+        </article>
+        <section>
+        <h3>Lists</h3>
+          <button type="button" onclick="location.href='/wishlist'">Wishlist</button>
+          <button type="button" onclick="location.href='/readList'">Read List</button>
+        </section>
+        <section>
+          <h3>Recent Reviews</h3>
+          <section id="reviews" class="review-container">
+          </section>
+        </section>
+        <article id="userStatistics">
+          <h3>Statistics</h3>
+          <section id="chartTabs">
+              <section id="tabButtons">
+                <button class="button-tab left-most active" onclick="showChart('monthlyBooksChart')"> Books Read Per Month</button>
+                <button class="button-tab right-most" onclick="showChart('monthlyPagesChart')"> Pages Read Per Month</button>
+              </section>
+              <section id="monthlyBooksChart" class="tab">
+                <canvas id="booksPerMonthChart" class="chart"></canvas>
+              </section>
+              <section id="monthlyPagesChart" class="tab">
+                <canvas id="pagesPerMonthChart" class="chart"></canvas>
+              </section>
+          </section>
+        </article>
+      </section>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../../js/profilePage.js"></script>
   </body>
 </html>
