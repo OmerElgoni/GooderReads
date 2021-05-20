@@ -49,6 +49,7 @@ async function setDetails() {
   setCoverImage(bookQueryResult.cover_image, bookQueryResult.title);
   setDescription(bookQueryResult.description);
   setAuthors(authorQueryResult);
+  setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
 
   const queryResult = await (await fetch(`${APIEndpoint}books/${bookId}/readlist`).then(response => response.json()));
   var reviewSection = document.getElementById("reviewContainer");
@@ -89,8 +90,6 @@ async function setDetails() {
     reviews += noReviews;
   }
   
-  
-  setRatings(postiveRating, negativeRating);
   reviewSection.innerHTML = reviews;
 }
 
