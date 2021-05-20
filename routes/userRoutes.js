@@ -60,6 +60,18 @@ module.exports = function (db) {
     );
   });
 
+  router.get('/find/:email', async (req, res) =>{
+    console.log('hit me ')
+    res.json(
+      await db.user.findOne({
+      where: {
+        email_address: req.params.email
+      }
+    })
+    )
+  })
+
+
   router.post("/", users.create);
   router.put("/:id", users.update);
 
