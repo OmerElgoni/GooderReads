@@ -46,7 +46,7 @@ async function setDetails() {
   authorQueryResult = await (await authorQueryResult).json();
   console.log("authorQueryResult", authorQueryResult);
   setTitle(bookQueryResult.title);
-  setCoverImage(bookQueryResult.cover_image, bookQueryResult.title);
+  setCoverImage(bookQueryResult.cover_art, bookQueryResult.title);
   setDescription(bookQueryResult.description);
   setAuthors(authorQueryResult);
   setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
