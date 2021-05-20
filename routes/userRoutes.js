@@ -61,7 +61,7 @@ module.exports = function (db) {
     );
   });
 
-  router.post("/create", users.create);
+  router.post("/", users.create);
   router.put("/:id", users.update);
 
   return router;
