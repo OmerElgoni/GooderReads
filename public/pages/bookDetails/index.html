@@ -55,20 +55,20 @@
     <h3>Reviews</h3>
     <section id="reviewContainer"></section>
     <h3>Write a review</h3>
-    <form>
-      <textarea class="review-text-input">
-        This book is Awesome!!! I like it because... 
+    <form id="reviewForm" action="">
+      <textarea class="review-text-input" name="review" id="review-textarea">
+This book is Awesome!!! I like it because... 
       </textarea>
       <section>
         <label for="like">
-          Like <input type="radio" value="like" name="rating"/>
+          Like <input type="radio" value="like" name="rating" checked/>
         </label>
         <label for="dislike">
           Dislike <input type="radio" value="dislike" name="rating"/>
         </label>
       </section>
 
-      <button type="submit" onsubmit="return validateForm()">
+      <button type="submit">
         Post your review
       </button>
     </form>
