@@ -8,26 +8,29 @@
     <script src="../../js/navBar.js"></script>
     <link href="../../css/variables.css" type="text/css" rel="stylesheet">
     <link href="../../css/profilePage.css" type="text/css" rel="stylesheet">
-
   </head>
   <body>
     <nav-bar></nav-bar>
     <main>
       <h1>Profile Page</h1>
       <section>
-        <article id="details-form">
-          <h3>Details</h3>
-          <label>Name:</label>
-          <p id="user-profile-name">
-          </p>
+        <article class="details-form">
+          <section id="profileHeading">
+            <h3 id="user-profile-name"></h3>
+          </section>
+          <i class="far fa-envelope"></i>
           <label>Email:</label>
-          <p id="user-profile-email">
-          </p>
+          <p id="user-profile-email"></p>
         </article>
-        <section>
-        <h3>Lists</h3>
+        <section id="bookLists">
+          <section class="book-list">
+            <h3 class="book-list">Wishlist</h3>
           <button type="button" onclick="location.href='/wishlist'">Wishlist</button>
+          </section>
+        <section class="book-list">
+          <h3>Past Books</h3>
           <button type="button" onclick="location.href='/readList'">Read List</button>
+        </section>
         </section>
         <section>
           <h3>Recent Reviews</h3>
@@ -54,5 +57,6 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../../js/profilePage.js"></script>
+    <script src="https://kit.fontawesome.com/c86a392dbc.js" crossorigin="anonymous"></script>
   </body>
 </html>

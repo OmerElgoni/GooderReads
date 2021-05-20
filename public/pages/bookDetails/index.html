@@ -4,11 +4,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Details</title>
+  <link href="../../css/variables.css" type="text/css" rel="stylesheet">
+  <link href="../../css/common.css" type="text/css" rel="stylesheet">
   <script src="../../js/navBar.js"></script>
   <script defer type="module" src="../../js/bookDetails.js"></script>
 </head>
 <body class="book-details-body">
+ 
   <nav-bar></nav-bar>
+  <main>
   <article class="book-details">
     <picture class="book-cover">
       <img
@@ -19,13 +23,19 @@
       />
     </picture>
     <section class="book-heading-and-description">
-      <h2 id="bookTitle">Book Title</h2>
-      <h1 id="bookAuthor">by Author McLastname</h1>
-      <section>
-        <h1 id="positiveReviews">0 Positive Reviews</h1>
-        <h1 id="negativeReviews">0 Negative Reviews</h1>
+      <h1 id="bookTitle">Book Title</h2>
+      <p id="bookAuthor">by Author McLastname</h1>
+      <section class="rating-containers">
+        <section class="rating-section">
+          <img class="icon" src="../../assets/images/like.svg" alt="Thumbs Down" />
+          <p id="positiveReviews">0 Positive Reviews</p>
+        </section>
+        <section class="rating-section">
+          <img class="icon" src="../../assets/images/dislike.svg" alt="Thumbs Down" />
+          <p id="negativeReviews">0 Negative Reviews</p>
+        </section>
       </section>
-      
+
       <p id="bookDescription">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -38,37 +48,41 @@
     </section>
   </article>
   <section>
-    <h2>Reviews</h2>
-    <h1>Write a review</h1>
+    <h3>Reviews</h3>
+    <section id="reviewContainer"></section>
+    <h3>Write a review</h3>
     <form>
       <textarea class="review-text-input">
-   This book is Awesome!!! I like it because... </textarea
-      >
+        This book is Awesome!!! I like it because... 
+      </textarea>
       <section>
-        <label for="like"
-          >Like <input type="radio" value="like" name="rating"
-        /></label>
-        <label for="dislike"
-          >Dislike <input type="radio" value="dislike" name="rating"
-        /></label>
+        <label for="like">
+          Like <input type="radio" value="like" name="rating"/>
+        </label>
+        <label for="dislike">
+          Dislike <input type="radio" value="dislike" name="rating"/>
+        </label>
       </section>
 
-      <button type="submit" onsubmit="return validateForm()">Post your review</button>
+      <button type="submit" onsubmit="return validateForm()">
+        Post your review
+      </button>
     </form>
-    <h1>What others are saying</h1>
-    <ol>
-      <li>
-        <p>This book sucks</p>
-        <img src="" alt="Thumbs Down" />
-      </li>
-      <li>
-        <p>This book Rocks</p>
-        <img src="" alt="Thumbs Up" />
-      </li>
-      <li>
-        <p>This book is kinda eh</p>
-        <img src="" alt="Thumbs Up" />
-      </li>
-    </ol>
   </section>
+</main>
+
+  <script src="https://kit.fontawesome.com/c86a392dbc.js" crossorigin="anonymous"></script>
 </body>
+
+<footer>
+  <div>
+    Icons made by
+    <a
+      href="https://www.flaticon.com/authors/pixel-perfect"
+      title="Pixel perfect"
+      >Pixel perfect</a
+    >
+    from
+    <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+  </div>
+</footer>
