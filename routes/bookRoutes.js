@@ -54,5 +54,20 @@ module.exports = function (db) {
     res.json(await book.getGenres());
   });
 
+  router.get("/:id/readlist", async (req, res) => {
+    res.json(
+      await db.book.findAll({
+        where: {
+          book_id: req.params.id,
+        },
+        include: {
+          model: db.user,
+          as: "past_book_owner",
+          required: true,
+        },
+      })
+    );
+  });
+
   return router;
 };
