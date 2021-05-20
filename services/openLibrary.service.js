@@ -34,13 +34,18 @@ const getBookByKey = (key) => {
   return getResponse(url);
 };
 
+const getBookByCategory = (genre) => {
+  const url = new URL(`https://openlibrary.org/subjects/${genre}.json`);
+  return getResponse(url);
+};
+
 const getBookByISBN = (isbn) => {
   const url = new URL(`https://openlibrary.org/isbn/${isbn}.json`);
   return getResponse(url);
 };
 
 const getCoverURLByID = (cover_id) => {
-  return `https://covers.openlibrary.org/b/id/${cover_id}-S.jpg`;
+  return `https://covers.openlibrary.org/b/id/${cover_id}-M.jpg`;
 };
 
 module.exports = {
@@ -50,4 +55,6 @@ module.exports = {
   getBookByKey,
   getBookByISBN,
   getCoverURLByID,
+  getBookByCategory
+
 };
