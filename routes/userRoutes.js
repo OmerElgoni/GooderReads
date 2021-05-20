@@ -3,6 +3,8 @@ const { Router } = require("express");
 var router = new Router();
 
 module.exports = function (db) {
+  const users = require("../controllers/user.controller.js");
+
   //Get all users
   router.get("/", async (req, res) => {
     res.json(await db.user.findAll());
@@ -57,6 +59,9 @@ module.exports = function (db) {
       })
     );
   });
+
+  router.post("/create", users.create);
+  router.put("/:id", users.update);
 
   return router;
 };
