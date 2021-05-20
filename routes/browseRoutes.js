@@ -13,6 +13,7 @@ module.exports = function (db) {
         },
         include: {
           model: db.book,
+          as: "books",
           required: true,
         },
       })
