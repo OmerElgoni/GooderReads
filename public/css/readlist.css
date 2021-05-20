@@ -78,7 +78,8 @@ margin-left: auto; */
 
 .book-info-block .image {
     margin-left: 10px;
-    max-width: 80%;
+    width: auto;
+    height: 85%;
     /* max-width: 180px; */
     /* max-width: 15%;
     min-width: 15%;
