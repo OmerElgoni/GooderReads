@@ -1,19 +1,32 @@
 <head>
-  <link rel="stylesheet" href="./resources/css/index.css" />
+  <link rel="stylesheet" href="../../css/bookDetails.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Details</title>
+  <script src="../../js/navBar.js"></script>
+  <script defer type="module" src="../../js/bookDetails.js"></script>
 </head>
 <body class="book-details-body">
+  <nav-bar></nav-bar>
   <article class="book-details">
     <picture class="book-cover">
       <img
+        class="cover-img"
+        id="coverImage"
         src="https://via.placeholder.com/200x250.jpg"
-        alt="Picture Goes Here"
+        alt="Book cover image"
       />
     </picture>
     <section class="book-heading-and-description">
-      <h2>Book Title</h2>
-      <h1>by Author McLastname</h1>
-      <meter value="3" min="0" max="5">3/5</meter>
-      <p>
+      <h2 id="bookTitle">Book Title</h2>
+      <h1 id="bookAuthor">by Author McLastname</h1>
+      <section>
+        <h1 id="positiveReviews">0 Positive Reviews</h1>
+        <h1 id="negativeReviews">0 Negative Reviews</h1>
+      </section>
+      
+      <p id="bookDescription">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -29,7 +42,7 @@
     <h1>Write a review</h1>
     <form>
       <textarea class="review-text-input">
- This book is Awesome!!! I like it because... </textarea
+   This book is Awesome!!! I like it because... </textarea
       >
       <section>
         <label for="like"
@@ -39,6 +52,8 @@
           >Dislike <input type="radio" value="dislike" name="rating"
         /></label>
       </section>
+
+      <button type="submit" onsubmit="return validateForm()">Post your review</button>
     </form>
     <h1>What others are saying</h1>
     <ol>
