@@ -27,16 +27,12 @@ module.exports = function (db) {
 
     const response = await openLibraryService.getBookByISBNDetailed(book.isbn) ;
     const bookDetails = response[Object.keys(response)[0]];
-    console.log("detailed response", bookDetails )
     if (bookDetails.details) {
-      console.log("FOUND DETAILS");
       
       if (bookDetails.details.description) {
-        console.log("FOUND DESCRIPTION");
         book.description = bookDetails.details.description;
       }
       if (bookDetails.details.number_of_pages) {
-        console.log("FOUND number_of_pages", bookDetails.details.number_of_pages);
         book.pages = bookDetails.details.number_of_pages;
       }
     }

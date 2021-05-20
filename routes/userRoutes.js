@@ -31,7 +31,7 @@ module.exports = function (db) {
     try {
       const user = db.user.findByPk(req.params.id);
       const book = db.book.findByPk(req.params.bookId);
-      await user.addBook(book);
+      await user.addWishlist_books(book);
       await user.save();
       res.json("Success");
       console.log("succesfully added book to wishlist")
