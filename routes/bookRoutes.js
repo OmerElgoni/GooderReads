@@ -23,7 +23,14 @@ module.exports = function (db) {
   //Get specific books authors
   router.get("/:id/author", async (req, res) => {
     const book = await db.book.findByPk(req.params.id);
-    res.json(book.getAuthors());
+    console.log(book);
+    res.json(await book.getAuthors());
+  });
+
+  //Get specific books genres
+  router.get("/:id/genres", async (req, res) => {
+    const book = await db.book.findByPk(req.params.id);
+    res.json(await book.getGenres());
   });
 
   return router;

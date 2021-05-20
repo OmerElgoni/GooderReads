@@ -8,5 +8,11 @@ module.exports = function (db) {
     res.json(await db.author.findAll());
   });
 
+  //Get specific authors books
+  router.get("/:id/books", async (req, res) => {
+    const author = await db.author.findByPk(req.params.id);
+    res.json(await author.getBooks());
+  });
+
   return router;
 };
