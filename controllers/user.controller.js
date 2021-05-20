@@ -6,12 +6,12 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
     // Validate request
-    // if (!req.body.first_name) {
-    //   res.status(400).send({
-    //     message: "Content can not be empty!"
-    //   });
-    //   return;
-    // }
+    if (!req.body.first_name) {
+      res.status(400).send({
+        message: "Content can not be empty!" + req.body
+      });
+      return;
+    }
 
     const user = {
       email_address: req.body.email_address,
