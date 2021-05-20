@@ -41,8 +41,9 @@ const toModel = async (element, db) => {
       )[0];
       genres.push(genre);
     }
+
     await book.setGenres(genres);
-    await book.setAuthor(author);
+    await book.setAuthors(author);
     book.authors = [author];
     book.genres = genres;
     return book;
