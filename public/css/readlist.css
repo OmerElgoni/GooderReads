@@ -1,0 +1,222 @@
+body {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    font-family: cursive;
+}
+
+
+/* body:before {
+    background: url('images/The-Human-Library.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    content: "";
+    opacity: 0.5;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: -1;
+} */
+
+.gr-heading {
+    display: block;
+    background-color: #f7f7f7;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: -1;
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+    top: 0;
+    -webkit-transition: top .3s;
+    transition: top .3s;
+    background: radial-gradient(718.08px at 50.13% 50%, #9fdd76 0%, #76dd78 100%);
+}
+
+.gr-heading h1 {
+    text-align: center;
+}
+
+.book-details {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+}
+
+.book-info-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: auto;
+margin-left: auto; */
+}
+
+.book-info-block {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    /* min-width: 290px; */
+    width: 90%;
+    height: 200px;
+    margin: 10px 10px;
+    /* text-align: center; */
+    padding-top: 30px;
+    background: white;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.book-info-block .image-container {
+    max-width: 20%;
+    min-width: 20%;
+}
+
+.book-info-block .image {
+    margin-left: 10px;
+    max-width: 80%;
+    /* max-width: 180px; */
+    /* max-width: 15%;
+    min-width: 15%;
+    max-height: 140px; */
+}
+
+.book-info-block .book-info {
+    width: 60%;
+    display: block;
+}
+
+.book-info-block ul {
+    width: 15%;
+    list-style-type: none;
+    margin-left: -32px;
+}
+
+
+/* .book-info-block p {
+    width: 55%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+} */
+
+.gr-button-add-to-list {
+    border: 1px solid #ccc;
+    color: #555;
+    background: radial-gradient(718.08px at 50.13% 50%, #9fdd76 0%, #76dd78 100%);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    margin-right: 6%;
+    /* margin-top: 65px; */
+}
+
+
+/*     
+.gr-table-section {
+    align-items: center;
+}
+
+.gr-table-all tr:nth-child(odd) {
+    background-color: #fff
+}
+
+.gr-table-all tr:nth-child(even) {
+    background-color: #f1f1f1
+}
+
+.gr-hoverable tbody tr:hover,
+.gr-ul.gr-hoverable li:hover {
+    background-color: #ccc
+}
+
+.gr-centered tr th,
+.gr-centered tr td {
+    text-align: center
+}
+
+.gr-table td,
+.gr-table th,
+.gr-table-all td,
+.gr-table-all th {
+    padding: 8px 8px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: top
+}
+
+.gr-table th:first-child,
+.gr-table td:first-child,
+.gr-table-all th:first-child,
+.gr-table-all td:first-child {
+    padding-left: 16px
+} */
+
+
+/* @media screen and (max-width: 600px) {
+    .book-info-list {
+        display: block;
+    }
+} */
+
+@media (max-width: 768px) {
+    .book-info-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        /* margin-right: auto;
+margin-left: auto; */
+    }
+    .book-info-block {
+        border: 1px solid #ccc;
+        min-width: 290px;
+        max-width: 290px;
+        height: 400px;
+        margin: 10px 10px;
+        text-align: center;
+        padding-top: 30px;
+        background: white;
+    }
+    .book-info-block img {
+        max-width: 180px;
+        max-height: 140px;
+    }
+    .book-info-block ul {
+        list-style-type: none;
+        margin-left: -32px;
+    }
+    .book-info-block p {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .gr-button-add-to-list {
+        border: 1px solid #ccc;
+        color: #555;
+        background: radial-gradient(718.08px at 50.13% 50%, #9fdd76 0%, #76dd78 100%);
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        margin-top: 5px;
+        padding: 10px 15px;
+        text-transform: uppercase;
+        transition: all 0.5s ease 0s;
+        cursor: pointer;
+    }
+}
