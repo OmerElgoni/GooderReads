@@ -18,7 +18,7 @@ function card(book_id, title, author, image, publisher, publish_date) {
   </div>
 `;
   element.addEventListener("click", () => {
-    window.location.href = `/book/${book_id}`;
+    window.location.href = `/book-details/?id=${book_id}`;
   });
   return element;
 }
