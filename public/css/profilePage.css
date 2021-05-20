@@ -1,16 +1,8 @@
 html *
 {
   font-family: sans-serif;
-  background-color: var(--text-light);
+  background-color: var(--background-light);
   color: var(--text-dark);
-}
-
-:root {
-  --blue-primary: #0D3B66;
-  --blue-secondary: #1B73C5;
-  --light-background: #FDF7DA;
-  --text-light: #FDFAEC;
-  --text-dark: #3A3B3C;
 }
 
 label {
