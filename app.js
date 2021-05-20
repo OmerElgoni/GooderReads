@@ -14,15 +14,15 @@ app.use(helmet());
 //Implements cors
 app.use(cors());
 
-app.get("*", async (req, res) => {
-  try {
-    res.sendFile(path.join(__dirname + "/public/pages" + req.originalUrl));
-  } catch (err) {
-    res.status(500).send(err);
-  }
+app.get("*", async(req, res) => {
+    try {
+        res.sendFile(path.join(__dirname + "/public/pages" + req.originalUrl));
+    } catch (err) {
+        res.status(500).send(err);
+    }
 });
 
 //start app
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4392;
 
 app.listen(port, () => console.log(`App is listening on port ${port}.`));
