@@ -18,12 +18,6 @@ app.use(helmet());
 //Implements cors
 app.use(cors());
 
-app.set('views', path.join(__dirname, 'views'));
-// Set EJS View Engine**
-app.set('view engine','ejs');
-// Set HTML engine**
-app.engine('html', require('ejs').renderFile);
-
 //Routes
 
 app.use("/api/books", require("./routes/bookRoutes.js")(db));
@@ -65,7 +59,7 @@ app.get("/test/db/alterSync", async (req, res) => {
 });
 
 //start app
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4100;
 
 if (db.env === "development") {
   //Create any tables that don't exist and start server
