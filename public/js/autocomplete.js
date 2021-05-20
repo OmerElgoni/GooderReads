@@ -22,7 +22,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
     );
 
     if (optionsContainer) {
-      const optionElements = optionsContainer.getElementsByTagName("div");
+      const optionElements = optionsContainer.getElementsByTagName("article");
 
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
@@ -80,7 +80,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
     closeAllLists();
     currentFocus = -1;
 
-    const optionsContainer = document.createElement("div");
+    const optionsContainer = document.createElement("article");
     optionsContainer.setAttribute("id", this.id + "autocomplete-list");
     optionsContainer.setAttribute("class", "autocomplete-items");
 
@@ -92,7 +92,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
         !val ||
         option.toUpperCase().includes(val.toUpperCase())
       ) {
-        const matchingOption = document.createElement("div");
+        const matchingOption = document.createElement("article");
 
         matchingOption.innerHTML = option;
 

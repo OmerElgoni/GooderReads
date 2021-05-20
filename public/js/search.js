@@ -4,10 +4,10 @@ var searchResults;
 var filteredResults;
 
 function card(book_id, title, author, image, publisher, publish_date) {
-  const element = document.createElement("div");
+  const element = document.createElement("section");
   element.className = "card";
   element.innerHTML = `<img src="${image}" alt="Book cover image." width=100 height=100 />
-  <div class="card-details">
+  <article class="card-details">
     <h3>${title}</h3>
     <p>
     By: ${author}, ${publisher}
@@ -15,7 +15,7 @@ function card(book_id, title, author, image, publisher, publish_date) {
     <p>
     Released: ${new Date(publish_date).toDateString()}
     </p>
-  </div>
+  </article>
 `;
   element.addEventListener("click", () => {
     window.location.href = `/book/${book_id}`;
