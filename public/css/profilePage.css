@@ -1,9 +1,4 @@
-/* ---- Common CSS ---- */
-html *
-{
-  font-family: sans-serif;
-  color: var(--text-dark);
-}
+/* ---- General CSS ---- */
 
 main {
   width: 90%;
@@ -60,7 +55,7 @@ i{
 
 /* ---- Book Lists CSS ---- */
 .book-list button {
-  width: 30%;
+  width: 100px;
 }
 
 #bookLists{
@@ -86,7 +81,8 @@ i{
   height: 100px;
   width: 33%;
   border-radius: 4px;
-  box-shadow: 1px 1px 3px 0px rgba(115,115,115,0.5)
+  box-shadow: 1px 1px 3px 0px rgba(115,115,115,0.5);
+  overflow: auto;
 }
 
 /* ---- Statistics CSS ---- */
