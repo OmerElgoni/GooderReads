@@ -1,3 +1,5 @@
+
+
 function setTitle(title) {
   const element = document.getElementById("bookTitle");
   element.textContent = title;
@@ -32,6 +34,10 @@ function setDescription(description) {
 }
 
 async function setDetails() {
+
+  document.getElementById("readlistButton").addEventListener("click", addToReadlist);
+  document.getElementById("wishlistButton").addEventListener("click", addToWishlist);
+
   const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -91,6 +97,32 @@ async function setDetails() {
   }
   
   reviewSection.innerHTML = reviews;
+}
+
+
+async function addToWishlist() {
+  const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const bookId = urlParams.get("id");
+  const userId = 2;
+  const wishlistQueryResult = await (
+    await fetch(`${APIEndpoint}users/${userId}/wishlist/${bookId}`)
+  ).json();
+
+  alert(wishlistQueryResult);
+}
+
+async function addToReadlist() {
+  const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const bookId = urlParams.get("id");
+  const userId = 2;
+  const readlistQueryResult = await (
+    await fetch(`${APIEndpoint}users/${userId}/wishlist/${bookId}`)
+  ).json();
+  alert(readlistQueryResult);
 }
 
 window.onload = setDetails();
