@@ -33,8 +33,10 @@ module.exports = function (db) {
       const book = db.book.findByPk(req.params.bookId);
       user.addBook(book);
       res.json("Success");
+      console.log("succesfully added book to wishlist")
     } catch (error) {
-      res.json(error);
+      res.json("Error");
+      console.log("ERROR", error)
     }
     
     
