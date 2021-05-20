@@ -1,5 +1,4 @@
 const { Router } = require("express");
-
 var router = new Router();
 
 module.exports = function (db) {

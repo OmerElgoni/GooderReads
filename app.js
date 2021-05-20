@@ -6,7 +6,8 @@ const app = express();
 const db = require("./models/index.js");
 
 //Parses stuff for post requests
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 //Should look at this for an ORM/ODM https://sequelize.org/master/manual/getting-started.html
 //Can make raw sql queries using https://sequelize.org/master/manual/raw-queries.html
 //as well as use model functions
