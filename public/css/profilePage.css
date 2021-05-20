@@ -1,8 +1,21 @@
+/* ---- Common CSS ---- */
 html *
 {
   font-family: sans-serif;
-  background-color: var(--background-light);
   color: var(--text-dark);
+}
+
+main {
+  width: 90%;
+  margin: auto;
+}
+
+h1 {
+  margin-top: 100px;
+}
+
+h3{
+  margin-top: 2rem;
 }
 
 label {
@@ -22,6 +35,45 @@ button:hover, button:focus{
   background-color: var(--blue-secondary);
 }
 
+/* ---- User Details CSS ---- */
+
+i{
+  float: left;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+#profileHeading{
+  display: flex;
+}
+
+.fa-user-edit{
+  vertical-align: bottom;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#user-profile-name{
+  font: large;
+  margin-top: 10px;
+}
+
+/* ---- Book Lists CSS ---- */
+.book-list button {
+  width: 30%;
+}
+
+#bookLists{
+  display: flex;
+  margin: auto;
+}
+
+.book-list{
+  width: 50%;
+}
+
+/* ---- Reviews CSS ---- */
+
 .review-container{
     display: flex;
     width: 100%;
@@ -32,9 +84,12 @@ button:hover, button:focus{
   margin: 5px;
   padding: 10px;
   height: 100px;
+  width: 30%;
   border-radius: 4px;
   box-shadow: 1px 1px 3px 0px rgba(115,115,115,0.5)
 }
+
+/* ---- Statistics CSS ---- */
 
 .button-tab {
   padding: 10px;
@@ -63,6 +118,7 @@ button:hover, button:focus{
 
 .chart {
   width: 100%;
+  max-height: 600px;
 }
 
 #chartTabs{
@@ -70,7 +126,8 @@ button:hover, button:focus{
 }
 
 #userStatistics{
-    width: 80%;
+    width: 100%;
+    margin: auto;
 }
 
 .book-title{

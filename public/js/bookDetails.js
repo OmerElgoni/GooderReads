@@ -12,9 +12,9 @@ function setCoverImage(coverImageUrl, title) {
 
 function setRatings(positiveRatings, negativeRatings) {
   document.getElementById("positiveReviews").textContent =
-    positiveRatings;
+    positiveRatings + " Positive Reviews";
   document.getElementById("negativeReviews").textContent =
-    negativeRatings;
+    negativeRatings + " Negative Reviews";
 }
 function setAuthors(authors) {
   const element = document.getElementById("bookAuthor");
@@ -46,10 +46,52 @@ async function setDetails() {
   authorQueryResult = await (await authorQueryResult).json();
   console.log("authorQueryResult", authorQueryResult);
   setTitle(bookQueryResult.title);
+  setCoverImage(bookQueryResult.cover_image, bookQueryResult.title);
   setDescription(bookQueryResult.description);
-  setCoverImage(bookQueryResult.cover_art, bookQueryResult.title);
   setAuthors(authorQueryResult);
-  setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
+
+  const queryResult = await (await fetch(`${APIEndpoint}books/${bookId}/readlist`).then(response => response.json()));
+  var reviewSection = document.getElementById("reviewContainer");
+
+  var reviews = "";
+  var noReviews = "<article>" + "No reviews yet! Be the first!" + "</article>";
+  
+  if (typeof queryResult[0] !== 'undefined'){
+    queryResult[0].past_book_owner.sort(function(a,b){
+      return new Date(b.user_past_book.date_completed) 
+              - new Date(a.user_past_book.date_completed);
+    });
+
+    var postiveRating = 0;
+    var negativeRating = 0;
+  
+  queryResult[0].past_book_owner.forEach((pastBookOwner) =>{ 
+      var date = new Date(pastBookOwner.user_past_book.date_completed.replace(' ', 'T'));
+      console.log({pastBookOwner});
+      reviews += "<article>" + 
+              '<section class="user-name">' + 
+              pastBookOwner.first_name +
+              ": </section>" + 
+              '\"' +
+              pastBookOwner.user_past_book.review + 
+              '\"' +
+              "</article>";
+      if (pastBookOwner.user_past_book.rating) {
+        postiveRating += 1;
+      }
+      else {
+        negativeRating += 1;
+      }
+  });
+}
+
+  if (reviews == ""){
+    reviews += noReviews;
+  }
+  
+  
+  setRatings(postiveRating, negativeRating);
+  reviewSection.innerHTML = reviews;
 }
 
 window.onload = setDetails();

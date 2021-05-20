@@ -3,6 +3,28 @@ html * {
   background-color: var(--background-light);
   color: var(--text-dark);
 }
+i {
+  margin-right: 10px;
+  float: left;
+}
+
+img {
+  margin-right: 10px;
+}
+
+textarea {
+  margin-bottom: 20px;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+}
+
+button {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
 
 .book-details-body {
   display: flex;
@@ -13,7 +35,7 @@ html * {
 
 .icon {
   width: auto;
-  height: 2rem
+  height: 2rem;
 }
 
 .book-details {
@@ -24,11 +46,42 @@ html * {
 .book-heading-and-description {
   display: flex;
   flex-direction: column;
-  padding-left: 50px;
+  margin-left: 5px;
+}
+
+.rating-containers {
+  display: flex;
+}
+
+.rating-section {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.rating-section p {
+  margin: 0;
+  margin-right: 25px;
 }
 
 .review-text-input {
   min-width: 80%;
+  min-height: 60px;
+  padding: 5px;
+}
+
+#reviewContainer {
+  display: flex;
+  width: 100%;
+}
+
+#reviewContainer article {
+  border: 1px solid var(--blue-primary);
+  margin: 5px;
+  padding: 10px;
+  height: 60px;
+  width: 30%;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px 0px rgba(115, 115, 115, 0.5);
 }
 
 .book-cover {
@@ -38,11 +91,27 @@ html * {
 }
 
 .cover-img {
-    width: auto;
-    height: 100%;
+  width: auto;
+  height: 100%;
 }
 
 footer {
   justify-self: end;
   bottom: 0;
+}
+
+#bookDescription {
+  width: 80%;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
+}
+
+#bookAuthor {
+  font-size: 1.3rem;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
 }
