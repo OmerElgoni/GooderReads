@@ -25,6 +25,7 @@ app.use("/api/books", require("./routes/bookRoutes.js")(db));
 app.use("/api/users", require("./routes/userRoutes.js")(db));
 app.use("/api/authors", require("./routes/authorRoutes.js")(db));
 app.use("/api/genres", require("./routes/genreRoutes.js")(db));
+app.use("/api/subjects", require("./routes/browseRoutes.js")(db));
 
 app.get("/test/db/authenticate", async (req, res) => {
   try {
