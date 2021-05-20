@@ -1,6 +1,9 @@
 const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
+app.configure(function(){
+    app.use(express.bodyParser());
+  });
 
 //tutorial: https://bezkoder.com/node-js-express-sequelize-mysql/
 
@@ -8,7 +11,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.first_name) {
       res.status(400).send({
-        message: "Content can not be empty!" + req.body
+        message: "Content can not be empty!" + req.body.first_name
       });
       return;
     }
@@ -34,6 +37,7 @@ exports.create = (req, res) => {
 
   exports.update = (req, res) => {
     const id = req.params.id;
+    console.log(id);
   
     User.update(req.body, {
       where: { id: id }
