@@ -1,3 +1,9 @@
+html * {
+  font-family: var(--font-family);
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
 #search-result-content {
   overflow-y: scroll;
   border: 1px solid black;
@@ -36,6 +42,8 @@
   cursor: pointer;
   margin-top: 5px;
   margin-bottom: 5px;
+  color: var(--text-light);
+  background-color: var(--blue-primary);
 }
 
 body {
@@ -51,10 +59,11 @@ body {
   display: flex;
   align-items: center;
   border-radius: 20px;
-  border: 1px solid black;
   padding: 20px;
   margin-bottom: 20px;
   cursor: pointer;
+  border: 1px solid var(--blue-primary);
+  box-shadow: 1px 1px 3px 0px rgba(115, 115, 115, 0.5);
 }
 
 .card-details {

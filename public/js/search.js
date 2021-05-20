@@ -108,7 +108,7 @@ function populateSearchResults(parent, results) {
     );
   });
 }
-// function getUniqueAuthors
+
 async function querySearchAPI() {
   const submitButton = document.getElementById("applyFiltersButton");
   submitButton.addEventListener("click", applyFilters);

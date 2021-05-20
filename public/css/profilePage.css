@@ -1,0 +1,79 @@
+html *
+{
+  font-family: sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+label {
+  font-weight: bold;
+  margin: 5px 10px 5px 0;
+}
+
+button{
+  padding: 10px;
+  background-color: var(--blue-primary);
+  color: var(--text-light);
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+button:hover, button:focus{
+  background-color: var(--blue-secondary);
+}
+
+.review-container{
+    display: flex;
+    width: 100%;
+}
+
+.review-container article {
+  border: 1px solid var(--blue-primary);
+  margin: 5px;
+  padding: 10px;
+  height: 100px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px 0px rgba(115,115,115,0.5)
+}
+
+.button-tab {
+  padding: 10px;
+  border-radius: 0px;
+  border: 0px;
+  float: left;
+  width: 100%;
+}
+
+.left-most{
+  border-top-left-radius: 4px;
+}
+
+.right-most{
+  border-top-right-radius: 4px;
+}
+
+#tabButtons {
+  display: flex;
+}
+
+.tab {
+  padding: 2rem;
+  border: 1px solid var(--blue-primary);
+}
+
+.chart {
+  width: 100%;
+}
+
+#chartTabs{
+  border-radius: 4px;
+}
+
+#userStatistics{
+    width: 80%;
+}
+
+.book-title{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
