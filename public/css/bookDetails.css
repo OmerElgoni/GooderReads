@@ -1,0 +1,31 @@
+.book-details-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 100px 50px 0px 50px;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.book-heading-and-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-text-input {
+  min-width: 80%;
+}
+
+.book-cover {
+    width: auto;
+  height: 100%;
+  display: flex;
+}
+
+.cover-img {
+    width: auto;
+    height: 100%;
+}

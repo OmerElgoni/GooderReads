@@ -3,11 +3,12 @@ import { autocomplete } from "./autocomplete.js";
 var searchResults;
 var filteredResults;
 
+
 function card(book_id, title, author, image, publisher, publish_date) {
-  const element = document.createElement("section");
+  const element = document.createElement("div");
   element.className = "card";
   element.innerHTML = `<img src="${image}" alt="Book cover image." width=100 height=100 />
-  <article class="card-details">
+  <div class="card-details">
     <h3>${title}</h3>
     <p>
     By: ${author}, ${publisher}
@@ -15,12 +16,19 @@ function card(book_id, title, author, image, publisher, publish_date) {
     <p>
     Released: ${new Date(publish_date).toDateString()}
     </p>
-  </article>
+  </div>
 `;
   element.addEventListener("click", () => {
-    window.location.href = `/bookDetails/?id=${book_id}`;
+    window.location.href = `/book-details/?id=${book_id}`;
   });
   return element;
+}
+
+function searchByGenre(genre){
+    const element = document.createElement("section");
+    element.className = "searchGenre"
+    element.innerHTML = '<input class="search_genre"/>';
+    return element;
 }
 function getUniqueGenres(books) {
   return Array.from(
@@ -46,20 +54,20 @@ function getUniqueAuthors(books) {
   );
 }
 
-function getUniquePublishers(books) {
-  return Array.from(
-    new Set(
-      books.map((element) => {
-        return element.publisher;
-      })
-    )
-  );
-}
+// function getUniquePublishers(books) {
+//   return Array.from(
+//     new Set(
+//       books.map((element) => {
+//         return element.publisher;
+//       })
+//     )
+//   );
+// }
 
 function applyFilters() {
   const genreFilterValue = document.querySelector("#genreInput").value;
   const authorFilterValue = document.querySelector("#authorInput").value;
-  const publisherFilterValue = document.querySelector("#publisherInput").value;
+//   const publisherFilterValue = document.querySelector("#publisherInput").value;
 
   filteredResults = searchResults.filter((element) => {
     if (genreFilterValue !== "") {
@@ -79,11 +87,11 @@ function applyFilters() {
         return false;
       }
     }
-    if (publisherFilterValue !== "") {
-      if (element.publisher !== publisherFilterValue) {
-        return false;
-      }
-    }
+    // if (publisherFilterValue !== "") {
+    //   if (element.publisher !== publisherFilterValue) {
+    //     return false;
+    //   }
+    // }
 
     return true;
   });
@@ -112,7 +120,7 @@ function populateSearchResults(parent, results) {
 async function querySearchAPI() {
   const submitButton = document.getElementById("applyFiltersButton");
   submitButton.addEventListener("click", applyFilters);
-  submitButton.disabled = true;
+//   submitButton.disabled = true;
 
   const parent = document.getElementById("search-result-content");
   const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
@@ -138,10 +146,10 @@ async function querySearchAPI() {
       document.getElementById("authorInput"),
       getUniqueAuthors(searchResults)
     );
-    autocomplete(
-      document.getElementById("publisherInput"),
-      getUniquePublishers(searchResults)
-    );
+    // autocomplete(
+    //   document.getElementById("publisherInput"),
+    //   getUniquePublishers(searchResults)
+    // );
     submitButton.disabled = false;
   }
 }
