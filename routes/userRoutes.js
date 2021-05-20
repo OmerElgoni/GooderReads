@@ -34,7 +34,7 @@ module.exports = function (db) {
       const user = db.user.findByPk(req.params.id);
       const book = db.book.findByPk(req.params.bookId);
       console.log( Object.getOwnPropertyNames(await user));
-      await user.addWishlist_books(book);
+      await user.addWishlist_book(book);
       await user.save();
       res.json("Success");
       console.log("succesfully added book to wishlist")
