@@ -1,3 +1,20 @@
+i {
+  margin-right: 10px;
+  float: left;
+}
+
+img {
+  margin-right: 10px;
+}
+
+textarea {
+  margin-bottom: 20px;
+}
+
+button{
+  margin-top: 10px;
+}
+
 .book-details-body {
   display: flex;
   flex-direction: column;
@@ -13,6 +30,21 @@
 .book-heading-and-description {
   display: flex;
   flex-direction: column;
+  margin-left: 5px;
+}
+
+.rating-containers {
+  display: flex;
+}
+
+.rating-section {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.rating-section p {
+  margin: 0;
+  margin-right: 25px;
 }
 
 .review-text-input {
@@ -28,4 +60,20 @@
 .cover-img {
     width: auto;
     height: 100%;
+}
+
+#bookDescription{
+  width: 80%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
+}
+
+#bookAuthor{
+  font-size: 1.3rem;
+  margin: 0rem;
+  margin-bottom: 0.5rem;
 }

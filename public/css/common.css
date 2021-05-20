@@ -1,0 +1,17 @@
+html *
+{
+  font-family: sans-serif;
+  color: var(--text-dark);
+}
+
+button{
+    padding: 10px;
+    background-color: var(--blue-primary);
+    color: var(--text-light);
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+  
+button:hover, button:focus{
+    background-color: var(--blue-secondary);
+  }
