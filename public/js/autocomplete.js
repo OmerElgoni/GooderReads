@@ -10,7 +10,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
       if (!autocompleteOptions.includes(inputElement.value)) {
         inputElement.value = "";
       }
-    }, 100);
+    }, 150);
   });
 
   inputElement.addEventListener("input", showPopUp);
@@ -22,7 +22,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
     );
 
     if (optionsContainer) {
-      const optionElements = optionsContainer.getElementsByTagName("div");
+      const optionElements = optionsContainer.getElementsByTagName("article");
 
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
@@ -38,10 +38,8 @@ export function autocomplete(inputElement, autocompleteOptions) {
         /*and and make the current item more visible:*/
         addActive(optionElements);
       } else if (e.keyCode == 13) {
-        /*If the ENTER key is pressed, prevent the form from being submitted,*/
-        e.preventDefault();
+        //If enter then simulate click item
         if (currentFocus > -1) {
-          /*and simulate a click on the "active" item:*/
           if (optionElements) {
             optionElements[currentFocus].click();
           }
@@ -59,6 +57,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
     autocompleteOptionElements[currentFocus].classList.add(
       "autocomplete-active"
     );
+    autocompleteOptionElements[currentFocus].scrollIntoView();
   }
   function removeActive(autocompleteOptionElements) {
     for (var i = 0; i < autocompleteOptionElements.length; i++) {
@@ -80,7 +79,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
     closeAllLists();
     currentFocus = -1;
 
-    const optionsContainer = document.createElement("div");
+    const optionsContainer = document.createElement("article");
     optionsContainer.setAttribute("id", this.id + "autocomplete-list");
     optionsContainer.setAttribute("class", "autocomplete-items");
 
@@ -92,12 +91,36 @@ export function autocomplete(inputElement, autocompleteOptions) {
         !val ||
         option.toUpperCase().includes(val.toUpperCase())
       ) {
-        const matchingOption = document.createElement("DIV");
+        const matchingOption = document.createElement("article");
+        let text = option;
+        if (val) {
+          let toReplace = [];
 
-        matchingOption.innerHTML = option;
+          const upperCaseOption = option.toUpperCase();
+          const uppercaseInput = val.toUpperCase();
 
-        matchingOption.innerHTML +=
-          "<input type='hidden' value='" + option + "'>";
+          let startIndex = 0;
+          while (startIndex !== -1) {
+            startIndex = upperCaseOption.indexOf(
+              uppercaseInput.toUpperCase(),
+              startIndex
+            );
+
+            if (startIndex !== -1) {
+              toReplace.push(option.slice(startIndex, startIndex + val.length));
+            } else {
+              break;
+            }
+            startIndex += 1;
+          }
+
+          new Set(toReplace).forEach((repl) => {
+            text = text.replaceAll(repl, `<strong>${repl}</strong>`);
+          });
+        }
+        matchingOption.innerHTML = text;
+
+        matchingOption.innerHTML += `<input type='hidden' value="${option}">`;
 
         matchingOption.addEventListener("click", function () {
           inputElement.value =

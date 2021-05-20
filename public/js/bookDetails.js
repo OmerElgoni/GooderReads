@@ -3,9 +3,27 @@ function setTitle(title) {
   element.textContent = title;
 }
 
-function setAuthor(author) {
+function setCoverImage(coverImageUrl, title) {
+  const element = document.getElementById("coverImage");
+  element.src = coverImageUrl
+    ? coverImageUrl
+    : `https://via.placeholder.com/200x250.?text=${title}jpg`;
+}
+
+function setRatings(positiveRatings, negativeRatings) {
+  document.getElementById("positiveReviews").textContent =
+    positiveRatings + " positive reviews";
+  document.getElementById("negativeReviews").textContent =
+    negativeRatings + " negative reviews";
+}
+function setAuthors(authors) {
   const element = document.getElementById("bookAuthor");
-  element.textContent = `by ${author}`;
+  let authorText = `by ${authors[0].first_name} ${authors[0].last_name}`;
+  for (let index = 1; index < authors.length; index++) {
+    const nextAuthor = `${authors[i].first_name} ${authors[i].last_name}`;
+    authorText = authorText + " and " + nextAuthor;
+  }
+  element.textContent = authorText;
 }
 
 async function setDetails() {
@@ -15,13 +33,17 @@ async function setDetails() {
   const bookId = urlParams.get("id");
   console.log("bookId", bookId);
 
-  const queryResult = await (
+  let authorQueryResult = fetch(`${APIEndpoint}books/${bookId}/author`);
+  const bookQueryResult = await (
     await fetch(`${APIEndpoint}books/${bookId}`)
   ).json();
-  console.log("queryResult", queryResult)
-  setTitle(queryResult.title);
-  setAuthor(queryResult.author)
+  console.log("bookQueryResult", bookQueryResult);
+  authorQueryResult = await (await authorQueryResult).json();
+  console.log("authorQueryResult", authorQueryResult);
+  setTitle(bookQueryResult.title);
+  setCoverImage(bookQueryResult.cover_image, bookQueryResult.title);
+  setAuthors(authorQueryResult);
+  setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
 }
-
 
 window.onload = setDetails();

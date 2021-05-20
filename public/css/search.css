@@ -1,3 +1,9 @@
+html * {
+  font-family: var(--font-family);
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
 #search-result-content {
   overflow-y: scroll;
   border: 1px solid black;
@@ -15,7 +21,6 @@
 .search-container {
   flex: 2;
   width: 100%;
-  min-width: 500px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -23,7 +28,6 @@
 
 .filter-container {
   padding-top: 60px;
-  min-width: 300px;
   margin-right: 20px;
   text-align: center;
   flex: 1;
@@ -38,6 +42,8 @@
   cursor: pointer;
   margin-top: 5px;
   margin-bottom: 5px;
+  color: var(--text-light);
+  background-color: var(--blue-primary);
 }
 
 body {
@@ -53,29 +59,26 @@ body {
   display: flex;
   align-items: center;
   border-radius: 20px;
-  border: 1px solid black;
   padding: 20px;
   margin-bottom: 20px;
   cursor: pointer;
+  border: 1px solid var(--blue-primary);
+  box-shadow: 1px 1px 3px 0px rgba(115, 115, 115, 0.5);
 }
 
 .card-details {
   padding-left: 20px;
-  min-width: 200px;
 }
 
 @media screen and (max-width: 920px) {
-  .search-container {
-    min-width: 200px;
-  }
   .filter-container {
-    min-width: 200px;
     margin-right: 0;
   }
   .card {
     justify-content: center;
     flex-direction: column;
   }
+
   #search-result-content {
     overflow-y: auto;
   }

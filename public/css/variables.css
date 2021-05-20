@@ -1,9 +1,10 @@
 :root {
-    --blue-primary: #0D3B66;
-    --blue-secondary: #1B73C5;
-    --background-light: #FDFAED;
-    --accent-alert-lighter: #EE964B;
-    --accent-alert-darker: #F95738;
-    --text-light: #FDFAEC;
-    --text-dark: #3A3B3C;
+  --blue-primary: #0d3b66;
+  --blue-secondary: #1b73c5;
+  --background-light: #fdfaed;
+  --accent-alert-lighter: #ee964b;
+  --accent-alert-darker: #f95738;
+  --text-light: #fdfaec;
+  --text-dark: #3a3b3c;
+  --font-family: sans-serif;
 }
