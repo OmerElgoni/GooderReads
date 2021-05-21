@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true, // Automatically gets converted to SERIAL for postgres
       },
-      date_completed: DataTypes.DATE,
-      date_started: DataTypes.DATE,
+      date_completed: { type: DataTypes.DATE, defaultValue: new Date() },
+      date_started: { type: DataTypes.DATE, defaultValue: new Date() },
       rating: DataTypes.BOOLEAN,
       review: DataTypes.STRING,
     },
