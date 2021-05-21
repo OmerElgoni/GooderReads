@@ -1,6 +1,5 @@
 var booksChartSection = document.getElementById('monthlyBooksChart');
 var pagesChartSection = document.getElementById('monthlyPagesChart');
-booksChartSection.style.display = 'none';
 pagesChartSection.style.display = 'none';
 const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api/';
 var userId = '2';
@@ -51,7 +50,9 @@ async function getPastBooksData()
         if ( i < 3) {
             reviews += "<article>" + 
                     '<section class="book-title">' + 
+                    `<a href="/bookDetails/?id=${pastBook.book_id}">` +
                     pastBook.title +
+                    '</a>' +
                     "</section>" + 
                     '\"' +
                     pastBook.user_past_book.review + 
