@@ -23,14 +23,10 @@ async function getWishlistData() {
 
     let wish_list = "";
 
-<<<<<<< Updated upstream
-    var cover_art = "";
-=======
     let books = Array(12).fill(0);
     let pages = Array(12).fill(0);
 
     let cover_art = "";
->>>>>>> Stashed changes
     queryResult[0].wishlist_books.forEach((wishedBook, i) => {
 
         console.log({ wishedBook });

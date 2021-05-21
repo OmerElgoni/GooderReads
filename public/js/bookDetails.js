@@ -64,15 +64,8 @@ async function setDetails() {
   setAuthors(authorQueryResult);
   setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
 
-<<<<<<< Updated upstream
-  const queryResult = await await fetch(
-    `${APIEndpoint}books/${bookId}/readlist`
-  ).then((response) => response.json());
-  var reviewSection = document.getElementById("reviewContainer");
-=======
   const queryResult = await (await fetch(`${APIEndpoint}books/${bookId}/readlist`).then(response => response.json()));
   let reviewSection = document.getElementById("reviewContainer");
->>>>>>> Stashed changes
 
   let reviews = "";
   let noReviews = "<article>" + "No reviews yet! Be the first!" + "</article>";
@@ -89,13 +82,7 @@ async function setDetails() {
     let negativeRating = 0;
 
     queryResult[0].past_book_owner.forEach((pastBookOwner) => {
-<<<<<<< Updated upstream
-      var date = new Date(
-        pastBookOwner.user_past_book.date_completed.replace(" ", "T")
-      );
-=======
       let date = new Date(pastBookOwner.user_past_book.date_completed.replace(' ', 'T'));
->>>>>>> Stashed changes
       console.log({ pastBookOwner });
       reviews +=
         "<article>" +
