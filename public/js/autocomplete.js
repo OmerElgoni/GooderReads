@@ -1,8 +1,6 @@
 //Based on code from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 
 export function autocomplete(inputElement, autocompleteOptions) {
-  /*the autocomplete function takes two arguments,
-      the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   inputElement.addEventListener("blur", function (e) {
     setTimeout(() => {
@@ -15,7 +13,6 @@ export function autocomplete(inputElement, autocompleteOptions) {
 
   inputElement.addEventListener("input", showPopUp);
   inputElement.addEventListener("focus", showPopUp);
-  /*execute a function presses a key on the keyboard:*/
   inputElement.addEventListener("keydown", function (e) {
     const optionsContainer = document.getElementById(
       this.id + "autocomplete-list"
@@ -86,11 +83,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
     this.parentNode.appendChild(optionsContainer);
 
     autocompleteOptions.forEach((option) => {
-      if (
-        val === "" ||
-        !val ||
-        option.toUpperCase().includes(val.toUpperCase())
-      ) {
+      if (!val || option.toUpperCase().includes(val.toUpperCase())) {
         const matchingOption = document.createElement("article");
         let text = option;
         if (val) {
