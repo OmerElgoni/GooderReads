@@ -22,16 +22,12 @@ async function getPastBooksData() {
     return new Date(b.release_date) - new Date(a.release_date);
   });
 
-<<<<<<< Updated upstream
-  var cover_art = "";
-=======
   let books = Array(12).fill(0);
   let pages = Array(12).fill(0);
 
   let location = "location.href='/bookDetails'";
 
   let cover_art = "";
->>>>>>> Stashed changes
   queryResult.forEach((pastBook, i) => {
     let date = new Date(pastBook.release_date.replace(" ", "T"));
 
