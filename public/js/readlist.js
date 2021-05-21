@@ -30,6 +30,8 @@ async function getPastBooksData() {
     var books = Array(12).fill(0);
     var pages = Array(12).fill(0);
 
+    var location = "location.href='/bookDetails'"
+
     var cover_art = "";
     queryResult[0].past_books.forEach((pastBook, i) => {
         var date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
@@ -47,7 +49,7 @@ async function getPastBooksData() {
             '<p>ISBN: ' + pastBook.isbn + '</p>' +
             '<p>Date completed: ' + date + '</p>' +
             '</section>' +
-            '<input class="gr-button-add-to-list" type="button" value="View Details"/>' +
+            '<button class="btn-list"  onclick="' + location + '">View Details</button > ' +
             ' </section>' + '';
 
     });
