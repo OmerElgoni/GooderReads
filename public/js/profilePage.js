@@ -7,8 +7,6 @@ async function loadData(){
     user = await (await fetch(`/user`)).json();
     const response = await (await fetch(`${APIEndpoint}users/find/${user.emails[0].value}`)).json()
     userId = response.user_id;
-    console.log(userId);  
-    console.log('Ummm is anybody there?');
     const booksChartSection = document.getElementById('monthlyBooksChart');
     const pagesChartSection = document.getElementById('monthlyPagesChart');
     pagesChartSection.style.display = 'none';
@@ -34,13 +32,11 @@ async function queryUserAPI()
 async function getPastBooksData()
 {
     const queryResult = await (await fetch(`${APIEndpoint}users/${userId}/readlist`).then(response => response.json()));
-    console.log(queryResult);
-    
-    // console.log(queryResult[0].past_books);
-
     let reviewSection = document.getElementById("reviews");
   
     let reviews = "";
+
+    if (queryResult)
     
     queryResult[0].past_books.sort(function(a,b){
         return new Date(b.user_past_book.date_completed) 
@@ -55,7 +51,8 @@ async function getPastBooksData()
         let date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
         console.log({pastBook});
         if ( i < 3) {
-            reviews += "<article>" + 
+            if (pastBook.review !== null){
+                reviews += "<article>" + 
                     '<section class="book-title">' + 
                     `<a href="/bookDetails/?id=${pastBook.book_id}">` +
                     pastBook.title +
@@ -65,6 +62,7 @@ async function getPastBooksData()
                     pastBook.user_past_book.review + 
                     '\"' +
                     "</article>" 
+            }
         }  
 
         if (date > new Date().setMonth(new Date().getMonth()-12)){
