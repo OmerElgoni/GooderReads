@@ -136,9 +136,11 @@ async function submitReview(event) {
   const userId = 2;
   // const text = document.getElementById("review-textarea").textContent;
   const text = document.getElementById("review-textarea").value;
+  const positive = document.getElementById("like-radio").checked;
+  const negative = document.getElementById("dislike-radio").checked;
   console.log(text)
   const reviewQueryResult = await (
-    await fetch(`${APIEndpoint}books/${bookId}/review/${userId}?text=${text}`, { method: 'POST' })
+    await fetch(`${APIEndpoint}books/${bookId}/review/${userId}?text=${text}&positive=${positive}&negative=${negative}`, { method: 'POST' })
   ).json();
   console.log(reviewQueryResult);
   location.reload();
