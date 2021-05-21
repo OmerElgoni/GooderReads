@@ -32,10 +32,15 @@ function setDescription(description) {
 }
 
 async function setDetails() {
-
-  document.getElementById("readlistButton").addEventListener("click", addToReadlist);
-  document.getElementById("wishlistButton").addEventListener("click", addToWishlist);
-  document.getElementById("reviewForm").addEventListener("submit", submitReview);
+  document
+    .getElementById("readlistButton")
+    .addEventListener("click", addToReadlist);
+  document
+    .getElementById("wishlistButton")
+    .addEventListener("click", addToWishlist);
+  document
+    .getElementById("reviewForm")
+    .addEventListener("submit", submitReview);
 
   const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
   const queryString = window.location.search;
@@ -51,41 +56,50 @@ async function setDetails() {
   authorQueryResult = await (await authorQueryResult).json();
   console.log("authorQueryResult", authorQueryResult);
   setTitle(bookQueryResult.title);
-  setCoverImage(bookQueryResult.cover_art, bookQueryResult.title);
+  setCoverImage(
+    bookQueryResult.cover_art.slice(0, -5) + "M.jpg",
+    bookQueryResult.title
+  );
   setDescription(bookQueryResult.description);
   setAuthors(authorQueryResult);
   setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
 
-  const queryResult = await (await fetch(`${APIEndpoint}books/${bookId}/readlist`).then(response => response.json()));
+  const queryResult = await await fetch(
+    `${APIEndpoint}books/${bookId}/readlist`
+  ).then((response) => response.json());
   var reviewSection = document.getElementById("reviewContainer");
 
   var reviews = "";
   var noReviews = "<article>" + "No reviews yet! Be the first!" + "</article>";
 
-  if (typeof queryResult[0] !== 'undefined') {
+  if (typeof queryResult[0] !== "undefined") {
     queryResult[0].past_book_owner.sort(function (a, b) {
-      return new Date(b.user_past_book.date_completed)
-        - new Date(a.user_past_book.date_completed);
+      return (
+        new Date(b.user_past_book.date_completed) -
+        new Date(a.user_past_book.date_completed)
+      );
     });
 
     var postiveRating = 0;
     var negativeRating = 0;
 
     queryResult[0].past_book_owner.forEach((pastBookOwner) => {
-      var date = new Date(pastBookOwner.user_past_book.date_completed.replace(' ', 'T'));
+      var date = new Date(
+        pastBookOwner.user_past_book.date_completed.replace(" ", "T")
+      );
       console.log({ pastBookOwner });
-      reviews += "<article>" +
+      reviews +=
+        "<article>" +
         '<section class="user-name">' +
         pastBookOwner.first_name +
         ": </section>" +
-        '\"' +
+        '"' +
         pastBookOwner.user_past_book.review +
-        '\"' +
+        '"' +
         "</article>";
       if (pastBookOwner.user_past_book.rating) {
         postiveRating += 1;
-      }
-      else {
+      } else {
         negativeRating += 1;
       }
     });
@@ -97,7 +111,6 @@ async function setDetails() {
 
   reviewSection.innerHTML = reviews;
 }
-
 
 async function addToWishlist() {
   const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
@@ -122,7 +135,7 @@ async function addToReadlist() {
     await fetch(`${APIEndpoint}users/${userId}/wishlist/${bookId}`)
   ).json();
   if (readlistQueryResult === "success") {
-    alert("added to readlist")
+    alert("added to readlist");
   }
   alert(readlistQueryResult);
 }
@@ -138,9 +151,12 @@ async function submitReview(event) {
   const text = document.getElementById("review-textarea").value;
   const positive = document.getElementById("like-radio").checked;
   const negative = document.getElementById("dislike-radio").checked;
-  console.log(text)
+  console.log(text);
   const reviewQueryResult = await (
-    await fetch(`${APIEndpoint}books/${bookId}/review/${userId}?text=${text}&positive=${positive}&negative=${negative}`, { method: 'POST' })
+    await fetch(
+      `${APIEndpoint}books/${bookId}/review/${userId}?text=${text}&positive=${positive}&negative=${negative}`,
+      { method: "POST" }
+    )
   ).json();
   console.log(reviewQueryResult);
   location.reload();
