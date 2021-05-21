@@ -1,0 +1,35 @@
+html * {
+    font-family: sans-serif;
+    color: var(--text-dark);
+}
+
+.btn-list {
+    padding: 10px;
+    background-color: var(--blue-primary);
+    color: var(--text-light);
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    margin-right: 6%;
+    margin-top: 130px;
+}
+
+.btn-list:hover,
+.btn-list:focus {
+    background-color: var(--blue-secondary);
+}
+
+button {
+    padding: 10px;
+    background-color: var(--blue-primary);
+    color: var(--text-light);
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+button:hover,
+button:focus {
+    background-color: var(--blue-secondary);
+}

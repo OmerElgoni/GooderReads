@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+    <script src="../../js/navBar.js"></script>
+    <script defer type="module" src="../../js/search.js"></script>
+
+    <link rel="stylesheet" href="../../css/search.css" />
+    <link rel="stylesheet" href="../../css/autocompleteField.css" />
+
+  </head>
+  <body>
+    <nav-bar></nav-bar>
+    <div class="page-content">
+      <article class="filter-container">
+        <section>
+          <fieldset name="Filter">
+            <legend>Filters</legend>
+            <section class="autocomplete">
+              <input
+                id="genreInput"
+                type="text"
+                name="genre"
+                placeholder="Genre"
+              />
+            </section>
+
+            <section class="autocomplete">
+              <input
+                id="authorInput"
+                type="text"
+                name="author"
+                placeholder="Author"
+              />
+            </section>
+
+            <section class="autocomplete">
+              <input
+                id="publisherInput"
+                type="text"
+                name="publisher"
+                placeholder="Publisher"
+              />
+            </section>
+            <button id='applyFiltersButton'>Apply Filters</button>
+   
+          </section>
+      </article>
+      <article class="search-container">
+        <h3>Search Results</h3>
+        <div id="search-result-content"></div>
+      </article>
+    </div>
+  </body>
+</html>
