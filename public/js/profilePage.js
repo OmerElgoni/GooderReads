@@ -51,7 +51,7 @@ async function getPastBooksData()
         let date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
         console.log({pastBook});
         if ( i < 3) {
-            if (pastBook.review !== null){
+            if (pastBook.user_past_book.review !== null){
                 reviews += "<article>" + 
                     '<section class="book-title">' + 
                     `<a href="/bookDetails/?id=${pastBook.book_id}">` +
