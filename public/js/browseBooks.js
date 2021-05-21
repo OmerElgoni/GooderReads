@@ -1,37 +1,65 @@
-const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api/';
+const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
+
+var userId = "2";
 
 document.addEventListener("DOMContentLoaded", loadData());
 
 async function loadData() {
-    queryGenreAPI();
+  getPastBooksData();
 }
 
-async function queryGenreAPI() {
-    const queryResult = await (await fetch(`${APIEndpoint}`).then(response => response.json()));
-    console.log(queryResult);
+async function getPastBooksData() {
+  const queryResult = await await fetch(`${APIEndpoint}books`).then(
+    (response) => response.json()
+  );
 
-    var bookListSection = document.getElementById("book_browser");
+  var bookListSection = document.getElementById("book_browser");
 
-    var book_browser = "";
+  var read_list = "";
 
-    var cover_art = "";
-    queryResult[0].books.forEach((books, i) => {
-        console.log({ books });
+  queryResult.sort(function (a, b) {
+    return new Date(b.release_date) - new Date(a.release_date);
+  });
 
-        cover_art = books.cover_art;
+  var books = Array(12).fill(0);
+  var pages = Array(12).fill(0);
 
-        //append html elements with respective book values
-        book_browser += "" + '<section class="book-info-block">' + '' +
-            '<section class="image-container">' + '' +
-            '<img id="book-art " alt="Book art" class="image" src="' + cover_art + '"/>' +
-            '</section>' +
-            '<section class="book-info ">' +
-            '<strong>' + books.title + '</strong>' +
-            '<p>ISBN: ' + books.subject + '</p>' +
-            '</section>' +
-            '<input class="gr-button-add-to-list" type="button" value="Add to wishlist"/>' +
-            ' </section>' + '';
-    });
+  var location = "location.href='/bookDetails'";
 
-    bookListSection.innerHTML = book_browser;
+  var cover_art = "";
+  queryResult.forEach((pastBook, i) => {
+    var date = new Date(pastBook.release_date.replace(" ", "T"));
+
+    cover_art = pastBook.cover_art;
+
+    //append html elements with respective book values
+    read_list +=
+      "" +
+      '<section class="book-info-block">' +
+      "" +
+      '<section class="image-container">' +
+      "" +
+      '<img id=" book-art " alt="Book art" class="image" src="' +
+      cover_art +
+      '"/>' +
+      "</section>" +
+      '<section class="book-info ">' +
+      "<strong>" +
+      pastBook.title +
+      "</strong>" +
+      "<p>ISBN: " +
+      pastBook.isbn +
+      "</p>" +
+      "<p>Release date: " +
+      date +
+      "</p>" +
+      "</section>" +
+      '<a class="btn-list"  href="' +
+      `/bookDetails/?id=${pastBook.book_id}` +
+      '">View Details</a > ' +
+      " </section>" +
+      "";
+  });
+
+  bookListSection.innerHTML = read_list;
 }
