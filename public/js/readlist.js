@@ -49,7 +49,7 @@ async function getPastBooksData() {
             '<p>ISBN: ' + pastBook.isbn + '</p>' +
             '<p>Date completed: ' + date + '</p>' +
             '</section>' +
-            '<button class="btn-list"  onclick="' + location + +`/?id=${pastBook.id}'">View Details</button > ' +
+            '<button class="btn-list"  onclick="' + location + `/?id=${pastBook.id}` + '">View Details</button > ' +
             ' </section>' + '';
 
     });
