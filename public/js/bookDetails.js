@@ -84,7 +84,8 @@ async function setDetails() {
     queryResult[0].past_book_owner.forEach((pastBookOwner) => {
       let date = new Date(pastBookOwner.user_past_book.date_completed.replace(' ', 'T'));
       console.log({ pastBookOwner });
-      reviews +=
+      if (pastBookOwner.user_past_book.review !== null){
+        reviews +=
         "<article>" +
         '<section class="user-name">' +
         pastBookOwner.first_name +
@@ -93,6 +94,8 @@ async function setDetails() {
         pastBookOwner.user_past_book.review +
         '"' +
         "</article>";
+      }
+      
       if (pastBookOwner.user_past_book.rating) {
         postiveRating += 1;
       } else {
