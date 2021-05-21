@@ -1,145 +1,75 @@
-body {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    margin: 0 auto;
-    font-family: cursive;
-}
-
-
-
-.gr-heading {
-    display: block;
-    background-color: #f7f7f7;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    z-index: -1;
-    opacity: 1;
-    position: relative;
-    pointer-events: auto;
-    top: 0;
-    -webkit-transition: top .3s;
-    transition: top .3s;
-    background: radial-gradient(718.08px at 50.13% 50%, #9fdd76 0%, #76dd78 100%);
-}
-
-.gr-heading h1 {
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Float four columns side by side */
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Remove extra left and right margins, due to padding in columns */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    padding: 16px;
     text-align: center;
-}
-
-.book-details {
-    border: 1px solid black;
-    width: 50px;
-    height: 50px;
-}
-
-.book-info-list {
-    display: flex;
-    flex-wrap: wrap;
+    background-color: #f1f1f1;
+    width: 100%;
+    height: 350px;
     align-items: center;
-    justify-content: center;
+  }
 
-}
-
-.book-info-block {
-    border: 1px solid #ccc;
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-    height: 200px;
-    margin: 10px 10px;
-    padding-top: 30px;
-    background: white;
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
-}
-
-.book-info-block .image-container {
-    max-width: 20%;
-    min-width: 20%;
-}
-
-.book-info-block .image {
-    margin-left: 10px;
-    width: auto;
-    height: 85%;
-
-}
-
-.book-info-block .book-info {
-    width: 60%;
-    display: block;
-}
-
-.book-info-block ul {
-    width: 15%;
-    list-style-type: none;
-    margin-left: -32px;
-}
-
-
-.gr-button-add-to-list {
-    border: 1px solid #ccc;
-    color: #555;
-    background: radial-gradient(718.08px at 50.13% 50%, #9fdd76 0%, #76dd78 100%);
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    transition: all 0.5s ease 0s;
+  .btn-browse{
+    padding: 10px;
+    background-color: var(--blue-primary);
+    color: var(--text-light);
+    border: 1px solid black;
+    border-radius: 4px;
     cursor: pointer;
-    position: absolute;
     right: 5px;
     margin-right: 6%;
     margin-top: 130px;
+  }
+  
+
+ .image-container {
+    max-width: 20%;
+    min-width: 20%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: auto;
+    height: 40%;
+    width: auto;
 }
 
-@media (max-width: 768px) {
-    .book-info-list {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-
-    }
-    .book-info-block {
-        border: 1px solid #ccc;
-        min-width: 290px;
-        max-width: 290px;
-        height: 400px;
-        margin: 10px 10px;
-        text-align: center;
-        padding-top: 30px;
-        background: white;
-    }
-    .book-info-block img {
-        max-width: 180px;
-        max-height: 140px;
-    }
-    .book-info-block ul {
-        list-style-type: none;
-        margin-left: -32px;
-    }
-    .book-info-block p {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    }
-    .gr-button-add-to-list {
-        border: 1px solid #ccc;
-        color: #555;
-        background: radial-gradient(718.08px at 50.13% 50%, #9fdd76 0%, #76dd78 100%);
-        display: inline-block;
-        font-size: 14px;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-        margin-top: 5px;
-        padding: 10px 15px;
-        text-transform: uppercase;
-        transition: all 0.5s ease 0s;
-        cursor: pointer;
-    }
+.image-container .image {
+    margin-left: 10px;
+    width: auto;
+    height: 85%;
 }
+
+  /* Responsive columns - one column layout (vertical) on small screens */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }

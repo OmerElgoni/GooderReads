@@ -1,10 +1,14 @@
 const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api/';
-
-var userId = '2';
+let user;
+let userId;
 
 document.addEventListener("DOMContentLoaded", loadData());
 
 async function loadData() {
+    user = await (await fetch(`/user`)).json();
+    const response = await (await fetch(`${APIEndpoint}users/find/${user.emails[0].value}`)).json()
+    userId = response.user_id;
+    sessionStorage.setItem('userId',userId);
     queryUserAPI();
     getPastBooksData();
 }
@@ -18,23 +22,18 @@ async function getPastBooksData() {
     const queryResult = await (await fetch(`${APIEndpoint}users/${userId}/readlist`).then(response => response.json()));
     console.log(queryResult[0].past_books);
 
-    var bookListSection = document.getElementById("read_list");
+    const bookListSection = document.getElementById("read_list");
 
-    var read_list = "";
+    let read_list = "";
 
     queryResult[0].past_books.sort(function(a, b) {
         return new Date(b.user_past_book.date_completed) -
             new Date(a.user_past_book.date_completed);
     });
 
-    var books = Array(12).fill(0);
-    var pages = Array(12).fill(0);
-
-    var location = "location.href='/bookDetails'"
-
-    var cover_art = "";
+    let cover_art = "";
     queryResult[0].past_books.forEach((pastBook, i) => {
-        var date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
+        let date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
         console.log({ pastBook });
 
         cover_art = pastBook.cover_art;
@@ -49,7 +48,7 @@ async function getPastBooksData() {
             '<p>ISBN: ' + pastBook.isbn + '</p>' +
             '<p>Date completed: ' + date + '</p>' +
             '</section>' +
-            '<button class="btn-list"  onclick="' + location + '">View Details</button > ' +
+            '<a class="btn-list"  href="' + `/bookDetails/?id=${pastBook.book_id}` + '">View Details</a > ' +
             ' </section>' + '';
 
     });

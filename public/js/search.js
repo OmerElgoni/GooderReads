@@ -1,7 +1,7 @@
 import { autocomplete } from "./autocomplete.js";
 
-var searchResults;
-var filteredResults;
+let searchResults;
+let filteredResults;
 
 function card(book_id, title, author, image, publisher, publish_date) {
   const element = document.createElement("section");
@@ -122,27 +122,31 @@ async function querySearchAPI() {
   if (searchQuery !== null) {
     parent.innerHTML = `Loading...`;
 
-    const queryResult = await (
-      await fetch(`${APIEndpoint}books/search?query=${searchQuery}`)
-    ).json();
+    try {
+      const queryResult = await (
+        await fetch(`${APIEndpoint}books/search?query=${searchQuery}`)
+      ).json();
 
-    searchResults = queryResult;
-    populateSearchResults(parent, searchResults);
+      searchResults = queryResult;
+      populateSearchResults(parent, searchResults);
 
-    //Add autocomplete functionality to each of these input fields
-    autocomplete(
-      document.getElementById("genreInput"),
-      getUniqueGenres(searchResults)
-    );
-    autocomplete(
-      document.getElementById("authorInput"),
-      getUniqueAuthors(searchResults)
-    );
-    autocomplete(
-      document.getElementById("publisherInput"),
-      getUniquePublishers(searchResults)
-    );
-    submitButton.disabled = false;
+      //Add autocomplete functionality to each of these input fields
+      autocomplete(
+        document.getElementById("genreInput"),
+        getUniqueGenres(searchResults)
+      );
+      autocomplete(
+        document.getElementById("authorInput"),
+        getUniqueAuthors(searchResults)
+      );
+      autocomplete(
+        document.getElementById("publisherInput"),
+        getUniquePublishers(searchResults)
+      );
+      submitButton.disabled = false;
+    } catch (error) {
+      parent.innerHTML = `Unable to retrieve data...`;
+    }
   }
 }
 

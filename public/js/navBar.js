@@ -35,12 +35,12 @@ class NavBar extends HTMLElement {
   </span>
 
   <span class="nav-content">
-    <div id="hamburger-links">
+    <article id="hamburger-links">
       <a href="/browse">Browse</a>
       <a href="/readList">Read</a>
       <a href="/wishlist">Wishlist</a>
       <a href="/profile">Profile</a>
-    </div>
+    </article>
     <form
       id="search-bar-form"
       autocomplete="off"

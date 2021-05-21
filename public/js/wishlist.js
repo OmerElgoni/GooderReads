@@ -1,10 +1,11 @@
 const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api/';
 
-var userId = '2';
+let userId;
 
 document.addEventListener("DOMContentLoaded", loadData());
 
 async function loadData() {
+    userId = sessionStorage.getItem('userId');
     queryUserAPI();
     getWishlistData();
 }
@@ -16,16 +17,13 @@ async function queryUserAPI() {
 }
 async function getWishlistData() {
     const queryResult = await (await fetch(`${APIEndpoint}users/${userId}/wishList`).then(response => response.json()));
-    console.log(queryResult[0].wishlist_books);
+    console.log(queryResult);
 
-    var bookListSection = document.getElementById("wish_list");
+    let bookListSection = document.getElementById("wish_list");
 
-    var wish_list = "";
+    let wish_list = "";
 
-    var books = Array(12).fill(0);
-    var pages = Array(12).fill(0);
-
-    var cover_art = "";
+    let cover_art = "";
     queryResult[0].wishlist_books.forEach((wishedBook, i) => {
 
         console.log({ wishedBook });

@@ -3,7 +3,79 @@ const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const app = express();
+const cookieSession = require('cookie-session')
+const passport = require('passport')
+const path = require('path');
+const errorHandler = require('errorhandler')
+const fetch = require("node-fetch");
+const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api';
+require('./passport')
 
+app.use(express.static("public"));
+app.use(express.static("public/pages"));
+
+app.use(cookieSession({
+  name: 'session-name',
+  keys: ['key1', 'key2']
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+const checkUserLoggedIn = (req, res, next) => {
+  req.user ? next() : res.redirect('/auth/google')
+}
+
+app.get('search', (req,res) =>{
+  res.send('please')
+})
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'], prompt: "select_account"}))
+
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failed'}),
+ function(req, res) {
+    res.redirect(`/profile`);
+  }
+)
+
+app.get(`/profile`, checkUserLoggedIn,(req,res) =>{
+  res.sendFile(path.join(__dirname + '/private_pages/profile.html'))
+})
+
+app.get('/user', checkUserLoggedIn, async (req, res) =>{
+    res.json(req.user)
+})
+
+app.get('/readlist', checkUserLoggedIn,(req,res) =>{
+    res.sendFile(path.join(__dirname + '/private_pages/readlist.html'))
+})
+
+app.get('/wishlist', checkUserLoggedIn,(req,res) =>{
+    res.sendFile(path.join(__dirname + '/private_pages/wishlist.html'))
+})
+
+app.get('/logout', (req, res) => {
+  req.session = null
+  req.logout()
+  res.redirect('/browse')
+})
+
+
+app.use(errorHandler({ log: errorNotification }));
+
+function errorNotification(err, str, req) {
+  console.log('ERROR', err);
+}
+
+app.use('/failed', (req, res) =>{
+  res.send('I failed')
+})
+
+app.use('/logout', (req, res) => {
+  req.session = null
+  req.logout()
+  res.redirect('/')
+})
 app.use(express.static("public"));
 app.use(express.static("public/pages"));
 
@@ -23,6 +95,6 @@ app.get("*", async(req, res) => {
 });
 
 //start app
-const port = process.env.PORT || 4392;
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => console.log(`App is listening on port ${port}.`));

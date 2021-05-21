@@ -1,37 +1,63 @@
-const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api/';
+const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
+
+let userId;
 
 document.addEventListener("DOMContentLoaded", loadData());
 
 async function loadData() {
-    queryGenreAPI();
+  userId = sessionStorage.getItem('user_Id');
+  getPastBooksData();
 }
 
-async function queryGenreAPI() {
-    const queryResult = await (await fetch(`${APIEndpoint}`).then(response => response.json()));
-    console.log(queryResult);
+async function getPastBooksData() {
+  const queryResult = await await fetch(`${APIEndpoint}books`).then(
+    (response) => response.json()
+  );
 
-    var bookListSection = document.getElementById("book_browser");
+  let bookListSection = document.getElementById("book_browser");
 
-    var book_browser = "";
+  let read_list = "";
 
-    var cover_art = "";
-    queryResult[0].books.forEach((books, i) => {
-        console.log({ books });
+  queryResult.sort(function (a, b) {
+    return new Date(b.release_date) - new Date(a.release_date);
+  });
 
-        cover_art = books.cover_art;
+  let cover_art = "";
+  queryResult.forEach((pastBook, i) => {
+    let date = new Date(pastBook.release_date.replace(" ", "T"));
 
-        //append html elements with respective book values
-        book_browser += "" + '<section class="book-info-block">' + '' +
-            '<section class="image-container">' + '' +
-            '<img id="book-art " alt="Book art" class="image" src="' + cover_art + '"/>' +
-            '</section>' +
-            '<section class="book-info ">' +
-            '<strong>' + books.title + '</strong>' +
-            '<p>ISBN: ' + books.subject + '</p>' +
-            '</section>' +
-            '<input class="gr-button-add-to-list" type="button" value="Add to wishlist"/>' +
-            ' </section>' + '';
-    });
+    cover_art = pastBook.cover_art;
 
-    bookListSection.innerHTML = book_browser;
+    //append html elements with respective book values
+    read_list +=
+      "" +
+      '<section class="column">' +
+      '<section class="card">' +
+      "" +
+      '<section class="image-container">' +
+      "" +
+      '<img id=" book-art " alt="Book art" class="image" src="' +
+      cover_art +
+      '"/>' +
+      "</section>" +
+      '<section class="card-body">' +
+      "<strong>" +
+      pastBook.title +
+      "</strong>" +
+      "<p>ISBN: " +
+      pastBook.isbn +
+      "</p>" +
+      "<p>Release date: " +
+      date +
+      "</p>" +
+      "</section>" +
+      '<a class="btn-browse"  href="' +
+      `/bookDetails/?id=${pastBook.book_id}` +
+      '">View Details</a > ' +
+      " </section>" +
+      " </section>" +
+      "";
+  });
+
+  bookListSection.innerHTML = read_list;
 }

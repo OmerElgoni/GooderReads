@@ -3,7 +3,7 @@
 export function autocomplete(inputElement, autocompleteOptions) {
   /*the autocomplete function takes two arguments,
       the text field element and an array of possible autocompleted values:*/
-  var currentFocus;
+      let currentFocus;
   inputElement.addEventListener("blur", function (e) {
     setTimeout(() => {
       closeAllLists();
@@ -15,7 +15,6 @@ export function autocomplete(inputElement, autocompleteOptions) {
 
   inputElement.addEventListener("input", showPopUp);
   inputElement.addEventListener("focus", showPopUp);
-  /*execute a function presses a key on the keyboard:*/
   inputElement.addEventListener("keydown", function (e) {
     const optionsContainer = document.getElementById(
       this.id + "autocomplete-list"
@@ -60,13 +59,13 @@ export function autocomplete(inputElement, autocompleteOptions) {
     autocompleteOptionElements[currentFocus].scrollIntoView();
   }
   function removeActive(autocompleteOptionElements) {
-    for (var i = 0; i < autocompleteOptionElements.length; i++) {
+    for (let i = 0; i < autocompleteOptionElements.length; i++) {
       autocompleteOptionElements[i].classList.remove("autocomplete-active");
     }
   }
   function closeAllLists(element) {
-    var x = document.getElementsByClassName("autocomplete-items");
-    for (var i = 0; i < x.length; i++) {
+    let x = document.getElementsByClassName("autocomplete-items");
+    for (let i = 0; i < x.length; i++) {
       if (element != x[i] && element != inputElement) {
         x[i].parentNode.removeChild(x[i]);
       }
@@ -86,11 +85,7 @@ export function autocomplete(inputElement, autocompleteOptions) {
     this.parentNode.appendChild(optionsContainer);
 
     autocompleteOptions.forEach((option) => {
-      if (
-        val === "" ||
-        !val ||
-        option.toUpperCase().includes(val.toUpperCase())
-      ) {
+      if (!val || option.toUpperCase().includes(val.toUpperCase())) {
         const matchingOption = document.createElement("article");
         let text = option;
         if (val) {
