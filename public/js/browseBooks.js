@@ -1,10 +1,11 @@
 const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
 
-var userId = "2";
+let userId;
 
 document.addEventListener("DOMContentLoaded", loadData());
 
 async function loadData() {
+  userId = sessionStorage.getItem('user_Id');
   getPastBooksData();
 }
 
@@ -13,17 +14,26 @@ async function getPastBooksData() {
     (response) => response.json()
   );
 
-  var bookListSection = document.getElementById("book_browser");
+  let bookListSection = document.getElementById("book_browser");
 
-  var read_list = "";
+  let read_list = "";
 
   queryResult.sort(function (a, b) {
     return new Date(b.release_date) - new Date(a.release_date);
   });
 
+<<<<<<< Updated upstream
   var cover_art = "";
+=======
+  let books = Array(12).fill(0);
+  let pages = Array(12).fill(0);
+
+  let location = "location.href='/bookDetails'";
+
+  let cover_art = "";
+>>>>>>> Stashed changes
   queryResult.forEach((pastBook, i) => {
-    var date = new Date(pastBook.release_date.replace(" ", "T"));
+    let date = new Date(pastBook.release_date.replace(" ", "T"));
 
     cover_art = pastBook.cover_art;
 

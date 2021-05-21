@@ -1,7 +1,7 @@
 import { autocomplete } from "./autocomplete.js";
 
-var searchResults;
-var filteredResults;
+let searchResults;
+let filteredResults;
 
 function card(book_id, title, author, image, publisher, publish_date) {
   const element = document.createElement("section");

@@ -7,6 +7,8 @@ const cookieSession = require('cookie-session')
 const passport = require('passport')
 const path = require('path');
 const errorHandler = require('errorhandler')
+const fetch = require("node-fetch");
+const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api';
 require('./passport')
 
 app.use(express.static("public"));
@@ -31,13 +33,17 @@ app.get('search', (req,res) =>{
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'], prompt: "select_account"}))
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/failed'}),
-  function(req, res) {
-    res.redirect('/profile')
+ function(req, res) {
+    res.redirect(`/profile`);
   }
 )
 
-app.get('/profile', checkUserLoggedIn,(req,res) =>{
+app.get(`/profile`, checkUserLoggedIn,(req,res) =>{
   res.sendFile(path.join(__dirname + '/private_pages/profile.html'))
+})
+
+app.get('/user', checkUserLoggedIn, async (req, res) =>{
+    res.json(req.user)
 })
 
 app.get('/readlist', checkUserLoggedIn,(req,res) =>{

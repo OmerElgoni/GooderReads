@@ -1,7 +1,13 @@
 //Based on code from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 
 export function autocomplete(inputElement, autocompleteOptions) {
+<<<<<<< Updated upstream
   var currentFocus;
+=======
+  /*the autocomplete function takes two arguments,
+      the text field element and an array of possible autocompleted values:*/
+      let currentFocus;
+>>>>>>> Stashed changes
   inputElement.addEventListener("blur", function (e) {
     setTimeout(() => {
       closeAllLists();
@@ -57,13 +63,13 @@ export function autocomplete(inputElement, autocompleteOptions) {
     autocompleteOptionElements[currentFocus].scrollIntoView();
   }
   function removeActive(autocompleteOptionElements) {
-    for (var i = 0; i < autocompleteOptionElements.length; i++) {
+    for (let i = 0; i < autocompleteOptionElements.length; i++) {
       autocompleteOptionElements[i].classList.remove("autocomplete-active");
     }
   }
   function closeAllLists(element) {
-    var x = document.getElementsByClassName("autocomplete-items");
-    for (var i = 0; i < x.length; i++) {
+    let x = document.getElementsByClassName("autocomplete-items");
+    for (let i = 0; i < x.length; i++) {
       if (element != x[i] && element != inputElement) {
         x[i].parentNode.removeChild(x[i]);
       }

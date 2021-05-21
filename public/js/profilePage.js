@@ -1,12 +1,17 @@
-var booksChartSection = document.getElementById('monthlyBooksChart');
-var pagesChartSection = document.getElementById('monthlyPagesChart');
-pagesChartSection.style.display = 'none';
-const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api/';
-var userId = '2';
-
 document.addEventListener("DOMContentLoaded", loadData());
+let user;
+let userId;
+const APIEndpoint = 'https://grad-gooder-reads-database.herokuapp.com/api/';
 
 async function loadData(){
+    user = await (await fetch(`/user`)).json();
+    const response = await (await fetch(`${APIEndpoint}users/find/${user.emails[0].value}`)).json()
+    userId = response.user_id;
+    console.log(userId);  
+    console.log('Ummm is anybody there?');
+    const booksChartSection = document.getElementById('monthlyBooksChart');
+    const pagesChartSection = document.getElementById('monthlyPagesChart');
+    pagesChartSection.style.display = 'none';
     queryUserAPI();
     getPastBooksData();
 }
@@ -14,8 +19,8 @@ async function loadData(){
 async function queryUserAPI()
 {
    const queryResult = await (await fetch(`${APIEndpoint}users/${userId}`).then(response => response.json()));
-
-    console.log(queryResult);
+   const queryString = window.location.search;
+   const urlParams = new URLSearchParams(queryString);
 
     const name = document.getElementById("user-profile-name");
     const email = document.getElementById("user-profile-email");
@@ -29,23 +34,25 @@ async function queryUserAPI()
 async function getPastBooksData()
 {
     const queryResult = await (await fetch(`${APIEndpoint}users/${userId}/readlist`).then(response => response.json()));
-    console.log(queryResult[0].past_books);
+    console.log(queryResult);
+    
+    // console.log(queryResult[0].past_books);
 
-    var reviewSection = document.getElementById("reviews");
+    let reviewSection = document.getElementById("reviews");
   
-    var reviews = "";
+    let reviews = "";
     
     queryResult[0].past_books.sort(function(a,b){
         return new Date(b.user_past_book.date_completed) 
                 - new Date(a.user_past_book.date_completed);
       });
 
-    var books = Array(12).fill(0);
-    var pages = Array(12).fill(0);
+      let books = Array(12).fill(0);
+      let pages = Array(12).fill(0);
 
     queryResult[0].past_books.forEach((pastBook, i) =>
     { 
-        var date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
+        let date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));
         console.log({pastBook});
         if ( i < 3) {
             reviews += "<article>" + 
@@ -71,7 +78,7 @@ async function getPastBooksData()
 }
 
 function showChart(chartName){
-    var tabs = document.getElementsByClassName("tab");
+    let tabs = document.getElementsByClassName("tab");
     for (i = 0; i < tabs.length; i++) {
         tabs[i].style.display = "none";
     }
@@ -80,11 +87,11 @@ function showChart(chartName){
 }
 
 function setUpCharts(books, pages){
-    var booksChart = document.getElementById('booksPerMonthChart').getContext('2d');
-    var pagesChart = document.getElementById('pagesPerMonthChart').getContext('2d');
+    let booksChart = document.getElementById('booksPerMonthChart').getContext('2d');
+    let pagesChart = document.getElementById('pagesPerMonthChart').getContext('2d');
 
     const monthLabels =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
-    var bookChart = new Chart(booksChart, {
+    let bookChart = new Chart(booksChart, {
         type: 'bar',
         data: {
             labels: monthLabels,
@@ -125,7 +132,7 @@ function setUpCharts(books, pages){
         }
     });
 
-    var pageChart = new Chart(pagesChart, {
+    let pageChart = new Chart(pagesChart, {
         type: 'bar',
         data: {
             labels: monthLabels,

@@ -64,13 +64,18 @@ async function setDetails() {
   setAuthors(authorQueryResult);
   setRatings(bookQueryResult.positive_rating, bookQueryResult.negative_rating);
 
+<<<<<<< Updated upstream
   const queryResult = await await fetch(
     `${APIEndpoint}books/${bookId}/readlist`
   ).then((response) => response.json());
   var reviewSection = document.getElementById("reviewContainer");
+=======
+  const queryResult = await (await fetch(`${APIEndpoint}books/${bookId}/readlist`).then(response => response.json()));
+  let reviewSection = document.getElementById("reviewContainer");
+>>>>>>> Stashed changes
 
-  var reviews = "";
-  var noReviews = "<article>" + "No reviews yet! Be the first!" + "</article>";
+  let reviews = "";
+  let noReviews = "<article>" + "No reviews yet! Be the first!" + "</article>";
 
   if (typeof queryResult[0] !== "undefined") {
     queryResult[0].past_book_owner.sort(function (a, b) {
@@ -80,13 +85,17 @@ async function setDetails() {
       );
     });
 
-    var postiveRating = 0;
-    var negativeRating = 0;
+    let postiveRating = 0;
+    let negativeRating = 0;
 
     queryResult[0].past_book_owner.forEach((pastBookOwner) => {
+<<<<<<< Updated upstream
       var date = new Date(
         pastBookOwner.user_past_book.date_completed.replace(" ", "T")
       );
+=======
+      let date = new Date(pastBookOwner.user_past_book.date_completed.replace(' ', 'T'));
+>>>>>>> Stashed changes
       console.log({ pastBookOwner });
       reviews +=
         "<article>" +
@@ -114,11 +123,11 @@ async function setDetails() {
 
 async function addToWishlist() {
   const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const bookId = urlParams.get("id");
-  const userId = 2;
-  const wishlistQueryResult = await (
+  let queryString = window.location.search;
+  let urlParams = new URLSearchParams(queryString);
+  let bookId = urlParams.get("id");
+  let userId = sessionStorage.getItem('userId');
+  let wishlistQueryResult = await (
     await fetch(`${APIEndpoint}users/${userId}/wishlist/${bookId}`)
   ).json();
 
