@@ -142,7 +142,7 @@ async function submitReview(event) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const bookId = urlParams.get("id");
-  const userId = 2;
+  const userId = sessionStorage.getItem('userId');
   // const text = document.getElementById("review-textarea").textContent;
   const text = document.getElementById("review-textarea").value;
   const positive = document.getElementById("like-radio").checked;
