@@ -70,7 +70,15 @@ module.exports = function (db) {
   router.post("/:id/review/:userId", async (req, res) => {
     try {
       const text = req.query.text;
-      console.log("REQ", text);
+      console.log("REQ", req.query);
+      const book = await db.book.findByPk(req.params.id);
+      if (req.query.positive === 'true') {
+        book.positive_rating++;
+      }
+      if (req.query.negative === 'true') {
+        book.negative_rating++;
+      }
+      await book.save();
       const user_book = await db.user_past_book.findOne({
         where: {
           book_id: req.params.id,
@@ -79,6 +87,7 @@ module.exports = function (db) {
       });
 
       user_book.review = text;
+      
       console.log(user_book);
       await user_book.save();
       res.status(200).send({
