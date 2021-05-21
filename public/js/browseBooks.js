@@ -21,11 +21,6 @@ async function getPastBooksData() {
     return new Date(b.release_date) - new Date(a.release_date);
   });
 
-  var books = Array(12).fill(0);
-  var pages = Array(12).fill(0);
-
-  var location = "location.href='/bookDetails'";
-
   var cover_art = "";
   queryResult.forEach((pastBook, i) => {
     var date = new Date(pastBook.release_date.replace(" ", "T"));

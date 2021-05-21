@@ -27,10 +27,6 @@ async function getPastBooksData() {
             new Date(a.user_past_book.date_completed);
     });
 
-    var books = Array(12).fill(0);
-    var pages = Array(12).fill(0);
-
-
     var cover_art = "";
     queryResult[0].past_books.forEach((pastBook, i) => {
         var date = new Date(pastBook.user_past_book.date_completed.replace(' ', 'T'));

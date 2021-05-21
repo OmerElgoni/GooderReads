@@ -22,9 +22,6 @@ async function getWishlistData() {
 
     var wish_list = "";
 
-    var books = Array(12).fill(0);
-    var pages = Array(12).fill(0);
-
     var cover_art = "";
     queryResult[0].wishlist_books.forEach((wishedBook, i) => {
 
