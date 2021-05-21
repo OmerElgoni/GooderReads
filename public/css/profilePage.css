@@ -56,13 +56,8 @@ i{
 
 /* ---- Book Lists CSS ---- */
 .book-list button {
-  width: 45%;
+  width: 150px;
   font-size: 1.1rem;
-}
-
-#bookLists{
-  display: flex;
-  margin: auto;
 }
 
 .book-list{
