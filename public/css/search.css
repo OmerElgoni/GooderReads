@@ -1,6 +1,5 @@
 html * {
   font-family: var(--font-family);
-  background-color: var(--background-light);
   color: var(--text-dark);
 }
 
@@ -42,7 +41,7 @@ html * {
   cursor: pointer;
   margin-top: 5px;
   margin-bottom: 5px;
-  color: var(--text-light);
+  color: white;
   background-color: var(--blue-primary);
 }
 
