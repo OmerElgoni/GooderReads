@@ -1,13 +1,9 @@
 //Based on code from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 
 export function autocomplete(inputElement, autocompleteOptions) {
-<<<<<<< Updated upstream
-  var currentFocus;
-=======
   /*the autocomplete function takes two arguments,
       the text field element and an array of possible autocompleted values:*/
       let currentFocus;
->>>>>>> Stashed changes
   inputElement.addEventListener("blur", function (e) {
     setTimeout(() => {
       closeAllLists();
