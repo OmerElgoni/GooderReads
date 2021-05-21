@@ -34,7 +34,7 @@ async function getWishlistData() {
         //append html elements with respective book values
         wish_list += "" + '<section class="book-info-block">' + '' +
             '<section class="image-container">' + '' +
-            '<img id=" book-art " class="image" src="' + cover_art + '"/>' +
+            '<img id=" book-art " alt="Book art" class="image" src="' + cover_art + '"/>' +
             '</section>' +
             '<section class="book-info ">' +
             '<strong>' + wishedBook.title + '</strong>' +

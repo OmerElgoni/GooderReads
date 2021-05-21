@@ -6,6 +6,8 @@ body {
     font-family: cursive;
 }
 
+
+
 .gr-heading {
     display: block;
     background-color: #f7f7f7;
@@ -100,8 +102,7 @@ body {
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        /* margin-right: auto;
-margin-left: auto; */
+
     }
     .book-info-block {
         border: 1px solid #ccc;

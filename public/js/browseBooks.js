@@ -23,7 +23,7 @@ async function queryGenreAPI() {
         //append html elements with respective book values
         book_browser += "" + '<section class="book-info-block">' + '' +
             '<section class="image-container">' + '' +
-            '<img id=" book-art " class="image" src="' + cover_art + '"/>' +
+            '<img id="book-art " alt="Book art" class="image" src="' + cover_art + '"/>' +
             '</section>' +
             '<section class="book-info ">' +
             '<strong>' + books.title + '</strong>' +
