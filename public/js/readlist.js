@@ -30,7 +30,6 @@ async function getPastBooksData() {
     var books = Array(12).fill(0);
     var pages = Array(12).fill(0);
 
-    var location = "location.href='/bookDetails'"
 
     var cover_art = "";
     queryResult[0].past_books.forEach((pastBook, i) => {
@@ -49,7 +48,7 @@ async function getPastBooksData() {
             '<p>ISBN: ' + pastBook.isbn + '</p>' +
             '<p>Date completed: ' + date + '</p>' +
             '</section>' +
-            '<button class="btn-list"  onclick="' + location + `/?id=${pastBook.id}` + '">View Details</button > ' +
+            '<a class="btn-list"  href="' + `/bookDetails/?id=${pastBook.book_id}` + '">View Details</a > ' +
             ' </section>' + '';
 
     });
