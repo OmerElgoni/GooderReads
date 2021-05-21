@@ -126,7 +126,7 @@ async function addToReadlist() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const bookId = urlParams.get("id");
-  const userId = 2;
+  const userId = sessionStorage.getItem('userId');
   const readlistQueryResult = await (
     await fetch(`${APIEndpoint}users/${userId}/wishlist/${bookId}`)
   ).json();
