@@ -23,9 +23,6 @@ async function getWishlistData() {
 
     let wish_list = "";
 
-    let books = Array(12).fill(0);
-    let pages = Array(12).fill(0);
-
     let cover_art = "";
     queryResult[0].wishlist_books.forEach((wishedBook, i) => {
 
