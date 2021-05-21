@@ -35,7 +35,8 @@ async function getPastBooksData() {
     //append html elements with respective book values
     read_list +=
       "" +
-      '<section class="book-info-block">' +
+      '<section class="column">' +
+      '<section class="card">' +
       "" +
       '<section class="image-container">' +
       "" +
@@ -43,7 +44,7 @@ async function getPastBooksData() {
       cover_art +
       '"/>' +
       "</section>" +
-      '<section class="book-info ">' +
+      '<section class="card-body">' +
       "<strong>" +
       pastBook.title +
       "</strong>" +
@@ -54,9 +55,10 @@ async function getPastBooksData() {
       date +
       "</p>" +
       "</section>" +
-      '<a class="btn-list"  href="' +
+      '<a class="btn-browse"  href="' +
       `/bookDetails/?id=${pastBook.book_id}` +
       '">View Details</a > ' +
+      " </section>" +
       " </section>" +
       "";
   });
