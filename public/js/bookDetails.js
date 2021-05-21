@@ -125,10 +125,10 @@ async function addToReadlist() {
   const APIEndpoint = "https://grad-gooder-reads-database.herokuapp.com/api/";
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const bookId = urlParams.get("id");
-  const userId = sessionStorage.getItem('userId');
+  let bookId = urlParams.get("id");
+  let userId = sessionStorage.getItem('userId');
   const readlistQueryResult = await (
-    await fetch(`${APIEndpoint}users/${userId}/wishlist/${bookId}`)
+    await fetch(`${APIEndpoint}users/${userId}/readlist/${bookId}`)
   ).json();
   if (readlistQueryResult === "success") {
     alert("added to readlist");
